@@ -1,0 +1,44 @@
+{
+  "SCUS-97502": {
+    "base_address": "0x7A6A00",
+    "base_address_size": "0x20000",
+    "pool_base_global": "0x5981C0",
+    "pool_base_value": "0x7A69CC",
+    "new_pool_base": "0x7C6A00",
+    "sbrk_break_global": "0x5A30C0",
+    "ram_end_global": "0x5981C4",
+    "ram_end_value": "0x1FF8000",
+    "memset_call_site": "0x4A44E0",
+    "memory_size_offset": "0x5981C4",
+    "pool_setup_func": "0x4A44A0",
+    "invoker_hook_site": "0x1001F8"
+  },
+  "SCES-53372": {
+    "base_address": "0x7AA800",
+    "base_address_size": "0x20000",
+    "pool_base_global": "0x596980",
+    "pool_base_value": "0x7AA7FC",
+    "new_pool_base": "0x7CA800",
+    "sbrk_break_global": "0x5A6A30",
+    "ram_end_global": "0x596984",
+    "ram_end_value": "0x1FF8000",
+    "memset_call_site": "0x476528",
+    "memory_size_offset": "0x596984",
+    "pool_setup_func": "0x4764E8",
+    "invoker_hook_site": "0x1001F8"
+  },
+  "SCPS-15105": {
+    "base_address": "0x798380",
+    "base_address_size": "0x20000",
+    "pool_base_global": "0x593468",
+    "pool_base_value": "0x79831C",
+    "new_pool_base": "0x7B8380",
+    "sbrk_break_global": "0x595AF0",
+    "ram_end_global": "0x59346C",
+    "ram_end_value": "0x1FF8000",
+    "memset_call_site": "0x4BB1A0",
+    "memory_size_offset": "0x59346C",
+    "pool_setup_func": "0x4BB160",
+    "invoker_hook_site": "0x1001F8"
+  }
+}

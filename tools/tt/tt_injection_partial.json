@@ -1,0 +1,20 @@
+{
+  "SCUS-97502": {
+    "pool_setup_func": "0x4A44A0",
+    "memset_call_site": "0x4A44E0",
+    "memset_func": "0x4F6678",
+    "memory_size_offset": "0x5981C4"
+  },
+  "SCES-53372": {
+    "pool_setup_func": "0x4764E8",
+    "memset_call_site": "0x476528",
+    "memset_func": "0x4F9DA0",
+    "memory_size_offset": "0x596984"
+  },
+  "SCPS-15105": {
+    "pool_setup_func": "0x4BB160",
+    "memset_call_site": "0x4BB1A0",
+    "memset_func": "0x4ED820",
+    "memory_size_offset": "0x59346C"
+  }
+}

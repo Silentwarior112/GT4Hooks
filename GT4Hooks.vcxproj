@@ -1,152 +1,186 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|x64">
-      <Configuration>Debug</Configuration>
+    <ProjectConfiguration Include="gt4o-US|x64">
+      <Configuration>gt4o-US</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64">
-      <Configuration>Release</Configuration>
+    <ProjectConfiguration Include="tt-US|x64">
+      <Configuration>tt-US</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="tt-EU|x64">
+      <Configuration>tt-EU</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="tt-JP|x64">
+      <Configuration>tt-JP</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\gt4\Adhoc.c" />
-    <ClCompile Include="source\gt4\Adhoc\Decl.c" />
-    <ClCompile Include="source\gt4\Adhoc\MMyModule.c" />
-    <ClCompile Include="source\gt4\CameraSys.c" />
-    <ClCompile Include="source\gt4\GameFunctions\Adhoc.c" />
-    <ClCompile Include="source\gt4\GameFunctions\FileDevice.c" />
-    <ClCompile Include="source\gt4\GameFunctions\FontManagerClass.c" />
-    <ClCompile Include="source\gt4\GameFunctions\IO.c" />
-    <ClCompile Include="source\gt4\GameFunctions\MCarGarage.c" />
-    <ClCompile Include="source\gt4\GameFunctions\Misc.c" />
-    <ClCompile Include="source\gt4\GameFunctions\Monitor.c" />
-    <ClCompile Include="source\gt4\GameFunctions\MStorage.c" />
-    <ClCompile Include="source\gt4\GameFunctions\PolyphonyGL.c" />
-    <ClCompile Include="source\gt4\GameFunctions\String.c" />
-    <ClCompile Include="source\gt4\HostFs.c" />
-    <ClCompile Include="source\gt4\HOutput.c" />
-    <ClCompile Include="source\gt4\MCarGarage.c" />
-    <ClCompile Include="source\gt4\MStorage.c" />
-    <ClCompile Include="source\gt4\Utils\String.c" />
-    <ClCompile Include="source\main.c" />
-    <ClCompile Include="source\ps2\Memory.c" />
+    <ClCompile Include="source\core\game\FileDevice.c" />
+    <ClCompile Include="source\core\game\IO.c" />
+    <ClCompile Include="source\core\game\String.c" />
+    <ClCompile Include="source\core\hooks\HOutput.c" />
+    <ClCompile Include="source\core\hooks\HostFs.c" />
+    <ClCompile Include="source\core\ps2\Memory.c" />
+    <ClCompile Include="source\core\ps2\Sio.c" />
+    <ClCompile Include="source\core\util\String.c" />
+    <ClCompile Include="source\games\gt4o\Adhoc.c" />
+    <ClCompile Include="source\games\gt4o\Adhoc\Decl.c" />
+    <ClCompile Include="source\games\gt4o\Adhoc\MMyModule.c" />
+    <ClCompile Include="source\games\gt4o\CameraSys.c" />
+    <ClCompile Include="source\games\gt4o\GameFunctions\Adhoc.c" />
+    <ClCompile Include="source\games\gt4o\GameFunctions\FontManagerClass.c" />
+    <ClCompile Include="source\games\gt4o\GameFunctions\MCarGarage.c" />
+    <ClCompile Include="source\games\gt4o\GameFunctions\MStorage.c" />
+    <ClCompile Include="source\games\gt4o\GameFunctions\Misc.c" />
+    <ClCompile Include="source\games\gt4o\GameFunctions\Monitor.c" />
+    <ClCompile Include="source\games\gt4o\GameFunctions\PolyphonyGL.c" />
+    <ClCompile Include="source\games\gt4o\MCarGarage.c" />
+    <ClCompile Include="source\games\gt4o\MStorage.c" />
+    <ClCompile Include="source\games\gt4o\main.c" />
+    <ClCompile Include="source\games\gt4o\util\Path.c" />
+    <ClCompile Include="source\games\tt\main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\gt4\Adhoc.h" />
-    <ClInclude Include="source\gt4\Adhoc\Decl.h" />
-    <ClInclude Include="source\gt4\Adhoc\MMyModule.h" />
-    <ClInclude Include="source\gt4\CameraSys.h" />
-    <ClInclude Include="source\gt4\Enums\Enums.h" />
-    <ClInclude Include="source\gt4\Enums\SceEnums.h" />
-    <ClInclude Include="source\gt4\GameFunctions\Adhoc.h" />
-    <ClInclude Include="source\gt4\GameFunctions\CameraSys.h" />
-    <ClInclude Include="source\gt4\GameFunctions\FileDevice.h" />
-    <ClInclude Include="source\gt4\GameFunctions\FontManagerClass.h" />
-    <ClInclude Include="source\gt4\GameFunctions\HOutput.h" />
-    <ClInclude Include="source\gt4\GameFunctions\IO.h" />
-    <ClInclude Include="source\gt4\GameFunctions\MCarGarage.h" />
-    <ClInclude Include="source\gt4\GameFunctions\Misc.h" />
-    <ClInclude Include="source\gt4\GameFunctions\Monitor.h" />
-    <ClInclude Include="source\gt4\GameFunctions\MStorage.h" />
-    <ClInclude Include="source\gt4\GameFunctions\PolyphonyGL.h" />
-    <ClInclude Include="source\gt4\GameFunctions\String.h" />
-    <ClInclude Include="source\gt4\GameStructs\Adhoc.h" />
-    <ClInclude Include="source\gt4\GameStructs\FileDevice.h" />
-    <ClInclude Include="source\gt4\GameStructs\FontManagerClass.h" />
-    <ClInclude Include="source\gt4\GameStructs\PolyphonyGL.h" />
-    <ClInclude Include="source\gt4\GameStructs\SceStructs.h" />
-    <ClInclude Include="source\gt4\HostFs.h" />
-    <ClInclude Include="source\gt4\HOutput.h" />
-    <ClInclude Include="source\gt4\MCarGarage.h" />
-    <ClInclude Include="source\gt4\MStorage.h" />
-    <ClInclude Include="source\gt4\Utils\String.h" />
-    <ClInclude Include="source\ps2\Memory.h" />
+    <ClInclude Include="source\core\Log.h" />
+    <ClInclude Include="source\core\Target.h" />
+    <ClInclude Include="source\core\game\FileDevice.h" />
+    <ClInclude Include="source\core\game\IO.h" />
+    <ClInclude Include="source\core\game\String.h" />
+    <ClInclude Include="source\core\hooks\HOutput.h" />
+    <ClInclude Include="source\core\hooks\HostFs.h" />
+    <ClInclude Include="source\core\pdistd\FileDevice.h" />
+    <ClInclude Include="source\core\pdistd\FileError.h" />
+    <ClInclude Include="source\core\pdistd\SceEnums.h" />
+    <ClInclude Include="source\core\pdistd\SceStructs.h" />
+    <ClInclude Include="source\core\ps2\Memory.h" />
+    <ClInclude Include="source\core\ps2\Sio.h" />
+    <ClInclude Include="source\core\util\String.h" />
+    <ClInclude Include="source\games\gt4o\Adhoc.h" />
+    <ClInclude Include="source\games\gt4o\Adhoc\Decl.h" />
+    <ClInclude Include="source\games\gt4o\Adhoc\MMyModule.h" />
+    <ClInclude Include="source\games\gt4o\CameraEnums.h" />
+    <ClInclude Include="source\games\gt4o\CameraSys.h" />
+    <ClInclude Include="source\games\gt4o\GameConfig.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\Adhoc.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\CameraSys.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\FontManagerClass.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\MCarGarage.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\MStorage.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\Misc.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\Monitor.h" />
+    <ClInclude Include="source\games\gt4o\GameFunctions\PolyphonyGL.h" />
+    <ClInclude Include="source\games\gt4o\GameStructs\Adhoc.h" />
+    <ClInclude Include="source\games\gt4o\GameStructs\FontManagerClass.h" />
+    <ClInclude Include="source\games\gt4o\GameStructs\PolyphonyGL.h" />
+    <ClInclude Include="source\games\gt4o\MCarGarage.h" />
+    <ClInclude Include="source\games\gt4o\MStorage.h" />
+    <ClInclude Include="source\games\gt4o\Targets\SCUS-97436.h" />
+    <ClInclude Include="source\games\gt4o\Targets\SCUS-97436.pgl.h" />
+    <ClInclude Include="source\games\gt4o\util\Path.h" />
+    <ClInclude Include="source\games\tt\GameConfig.h" />
+    <ClInclude Include="source\games\tt\Targets\SCES-53372.h" />
+    <ClInclude Include="source\games\tt\Targets\SCPS-15105.h" />
+    <ClInclude Include="source\games\tt\Targets\SCUS-97502.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="build.bat" />
+    <None Include="makefile" />
+    <None Include="mk\eemakefile.eeglobal" />
+    <None Include="mk\linkfile" />
+    <None Include="source\games\gt4o\game.mk" />
+    <None Include="source\games\tt\game.mk" />
+    <None Include="tools\check_game.py" />
+    <None Include="tools\clamp_bss.py" />
+    <None Include="tools\gen_vsproject.py" />
+    <None Include="tools\tt\consolidate.py" />
+    <None Include="tools\tt\find_free_space.py" />
+    <None Include="tools\tt\gen_headers.py" />
+    <None Include="tools\tt\make_injection.py" />
+    <None Include="tools\tt\resolve_houtput.py" />
+    <None Include="tools\tt\resolve_injection.py" />
+    <None Include="tools\tt\resolve_printf.py" />
+    <None Include="tools\tt\resolve_stage2.py" />
+    <None Include="tools\tt\resolve_tt.py" />
+    <None Include="tools\ttanalyze.py" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{2C95429D-8256-4051-B257-4025D63BC70F}</ProjectGuid>
-    <Keyword>Win32Proj</Keyword>
+    <Keyword>MakeFileProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Makefile</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='gt4o-US|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-US|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-EU|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-JP|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='gt4o-US|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='tt-US|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='tt-EU|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='tt-JP|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
-    <NMakeOutput>$(OutDir)GT4Hooks.elf</NMakeOutput>
-    <NMakeCleanCommandLine>build.bat</NMakeCleanCommandLine>
-    <NMakeReBuildCommandLine>del /s *.o</NMakeReBuildCommandLine>
-    <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='gt4o-US|x64'">
+    <NMakeBuildCommandLine>build.bat gt4o US</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean gt4o US &amp;&amp; build.bat gt4o US</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean gt4o US</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\gt4o\SCUS-97436\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCUS-97436.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\gt4o\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
-    <NMakeOutput>$(OutDir)GT4Hooks.elf</NMakeOutput>
-    <NMakeCleanCommandLine>build.bat</NMakeCleanCommandLine>
-    <NMakeReBuildCommandLine>del /s *.o</NMakeReBuildCommandLine>
-    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-US|x64'">
+    <NMakeBuildCommandLine>build.bat tt US</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean tt US &amp;&amp; build.bat tt US</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean tt US</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\tt\SCUS-97502\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCUS-97502.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\tt\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
-    <NMakeOutput>$(OutDir)GT4Hooks.elf</NMakeOutput>
-    <NMakeCleanCommandLine>build.bat</NMakeCleanCommandLine>
-    <NMakeReBuildCommandLine>del /s *.o</NMakeReBuildCommandLine>
-    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-EU|x64'">
+    <NMakeBuildCommandLine>build.bat tt EU</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean tt EU &amp;&amp; build.bat tt EU</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean tt EU</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\tt\SCES-53372\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCES-53372.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\tt\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
-    <NMakeOutput>$(OutDir)GT4Hooks.elf</NMakeOutput>
-    <NMakeCleanCommandLine>build.bat</NMakeCleanCommandLine>
-    <NMakeReBuildCommandLine>del /s *.o</NMakeReBuildCommandLine>
-    <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-JP|x64'">
+    <NMakeBuildCommandLine>build.bat tt JP</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean tt JP &amp;&amp; build.bat tt JP</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean tt JP</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\tt\SCPS-15105\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCPS-15105.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\tt\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
-  <ItemDefinitionGroup>
-  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

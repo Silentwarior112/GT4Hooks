@@ -373,3 +373,17 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# ---- GT4Hooks ----
+# This repository is source-only: no SDK, no base images, no build output, no
+# binaries of any kind. Those live outside it - see the README (PS2SDK_HOME and
+# WORK). The rules below are a safety net, not a description of the layout.
+*.o
+*.elf
+*.exe
+*.pkl
+BASE_*
+out/
+bases/
+external/
+__pycache__/

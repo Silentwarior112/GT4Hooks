@@ -1,0 +1,14 @@
+{
+  "SCUS-97502": {
+    "insn0": "0x27BDFFB0",
+    "insn1": "0xFFB70038"
+  },
+  "SCES-53372": {
+    "insn0": "0x27BDFFB0",
+    "insn1": "0xFFB70038"
+  },
+  "SCPS-15105": {
+    "insn0": "0x27BDFFB0",
+    "insn1": "0xFFB70038"
+  }
+}

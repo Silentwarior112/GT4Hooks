@@ -1,21 +1,49 @@
 {
+    "//": [
+        "One configuration per game, so IntelliSense resolves the same headers",
+        "the real build does. Pick one with the config selector in the status bar.",
+        "",
+        "These mirror what the makefile passes: -Isource for shared headers,",
+        "-Isource/games/<game>/Targets plus -DTARGET_HEADER for the address seam",
+        "(see source/core/Target.h)."
+    ],
     "configurations": [
         {
-            "name": "Win32",
+            "name": "gt4o (SCUS-97436)",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/source",
+                "${workspaceFolder}/source/games/gt4o/Targets",
+                "${workspaceFolder}/../ps2sdk-main/ps2sdk/ee/include",
+                "${workspaceFolder}/../ps2sdk-main/ps2sdk/common/include"
             ],
             "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
+                "_EE",
+                "HOSTFS_PRINT=1",
+                "PRINT_HOSTFS_READS=0",
+                "TARGET_HEADER=\"SCUS-97436.h\""
             ],
-            "windowsSdkVersion": "10.0.22621.0",
-            "compilerPath": "cl.exe",
+            "compilerPath": "${workspaceFolder}/../ps2sdk-main/ee/bin/mips64r5900el-ps2-elf-gcc.exe",
             "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "intelliSenseMode": "gcc-x86"
+        },
+        {
+            "name": "tt (SCUS-97502)",
+            "includePath": [
+                "${workspaceFolder}/source",
+                "${workspaceFolder}/source/games/tt/Targets",
+                "${workspaceFolder}/../ps2sdk-main/ps2sdk/ee/include",
+                "${workspaceFolder}/../ps2sdk-main/ps2sdk/common/include"
+            ],
+            "defines": [
+                "_EE",
+                "HOSTFS_PRINT=1",
+                "PRINT_HOSTFS_READS=1",
+                "HOSTFS_DIR=\"VOL_extract\"",
+                "TARGET_HEADER=\"SCUS-97502.h\""
+            ],
+            "compilerPath": "${workspaceFolder}/../ps2sdk-main/ee/bin/mips64r5900el-ps2-elf-gcc.exe",
+            "cStandard": "c17",
+            "intelliSenseMode": "gcc-x86"
         }
     ],
     "version": 4

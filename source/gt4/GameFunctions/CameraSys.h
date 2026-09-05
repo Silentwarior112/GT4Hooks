@@ -1,3 +1,0 @@
-#pragma once
-
-#define ADDR_CameraSys_CameraOnBoard_GetCameraMountIndex 0x23F438

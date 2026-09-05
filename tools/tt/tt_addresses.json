@@ -1,0 +1,1364 @@
+{
+  "SCUS-97502": {
+    "PlayStation2_FileDeviceRo_closeStream": {
+      "gt4o": 4612160,
+      "group": "filedev",
+      "candidates": [
+        4720304
+      ],
+      "tt": 4720304,
+      "status": "unique",
+      "fp_len": 37,
+      "group_delta": 108144
+    },
+    "PlayStation2_FileDeviceRo_openStream": {
+      "gt4o": 4612312,
+      "group": "filedev",
+      "candidates": [
+        4720456
+      ],
+      "tt": 4720456,
+      "status": "unique",
+      "fp_len": 96,
+      "group_delta": 108144
+    },
+    "PlayStation2_FileDeviceRo_rawReadStream": {
+      "gt4o": 4612744,
+      "group": "filedev",
+      "candidates": [
+        4720888
+      ],
+      "tt": 4720888,
+      "status": "unique",
+      "fp_len": 112,
+      "group_delta": 108144
+    },
+    "PlayStation2_FileDeviceRo2_IOControlStream": {
+      "gt4o": 4613568,
+      "group": "filedev",
+      "candidates": [
+        4721712
+      ],
+      "tt": 4721712,
+      "status": "unique",
+      "fp_len": 54,
+      "group_delta": 108144
+    },
+    "PlayStation2_FileDeviceRo2_readStat": {
+      "gt4o": 4614832,
+      "group": "filedev",
+      "candidates": [
+        4722976
+      ],
+      "tt": 4722976,
+      "status": "unique",
+      "fp_len": 42,
+      "group_delta": 108144
+    },
+    "PlayStation2_FileDeviceRo2_getCdOffset": {
+      "gt4o": 4615168,
+      "group": "filedev",
+      "candidates": [
+        4723312
+      ],
+      "tt": 4723312,
+      "status": "unique",
+      "fp_len": 42,
+      "group_delta": 108144
+    },
+    "PlayStation2_FileDeviceRo_pipe": {
+      "gt4o": 4615344,
+      "group": "filedev",
+      "candidates": [
+        4723488
+      ],
+      "tt": 4723488,
+      "status": "unique",
+      "fp_len": 36,
+      "group_delta": 108144
+    },
+    "PlayStation2_FileDeviceRo2_GetFileEntry": {
+      "gt4o": 4587360,
+      "group": "filedev",
+      "candidates": [
+        4695504
+      ],
+      "tt": 4695504,
+      "status": "unique",
+      "fp_len": 46,
+      "group_delta": 108144
+    },
+    "PDISTD_FileDevice_readStream": {
+      "gt4o": 4599576,
+      "group": "filedev",
+      "candidates": [
+        4707720
+      ],
+      "tt": 4707720,
+      "status": "unique",
+      "fp_len": 28,
+      "group_delta": 108144
+    },
+    "PDISTD_FileDevice_setExpander": {
+      "gt4o": 4599760,
+      "group": "filedev",
+      "candidates": [
+        4707904
+      ],
+      "tt": 4707904,
+      "status": "unique",
+      "fp_len": 19,
+      "group_delta": 108144
+    },
+    "PDISTD_FileDevice_removeExpander": {
+      "gt4o": 4599840,
+      "group": "filedev",
+      "candidates": [
+        4707984
+      ],
+      "tt": 4707984,
+      "status": "unique",
+      "fp_len": 17,
+      "group_delta": 108144
+    },
+    "PDISTD_FileInternalStream_ioctl": {
+      "gt4o": 4607184,
+      "group": "filedev",
+      "candidates": [
+        4714880,
+        4715056,
+        4715328
+      ],
+      "tt": 4715328,
+      "status": "resolved-by-delta",
+      "fp_len": 20,
+      "group_delta": 108144
+    },
+    "PDISTD_FileInternalStream_getDevice": {
+      "gt4o": 4607272,
+      "group": "filedev",
+      "candidates": [],
+      "tt": null,
+      "status": "missing",
+      "fp_len": 2,
+      "group_delta": 108144
+    },
+    "PDISTD_FileStatus_FileStatus": {
+      "gt4o": 4606312,
+      "group": "filedev",
+      "candidates": [
+        1540696,
+        4680856,
+        4702824,
+        4714456,
+        4977472
+      ],
+      "tt": 4714456,
+      "status": "resolved-by-delta",
+      "fp_len": 5,
+      "group_delta": 108144
+    },
+    "PageManager_GetEntryForFile": {
+      "gt4o": 4592576,
+      "group": "filedev",
+      "candidates": [
+        4700720
+      ],
+      "tt": 4700720,
+      "status": "unique",
+      "fp_len": 32,
+      "group_delta": 108144
+    },
+    "PlaystationX_LockFileName": {
+      "gt4o": 4616288,
+      "group": "filedev",
+      "candidates": [
+        4724432
+      ],
+      "tt": 4724432,
+      "status": "unique",
+      "fp_len": 16,
+      "group_delta": 108144
+    },
+    "PlayStationX_UnlockFileName": {
+      "gt4o": 4616320,
+      "group": "filedev",
+      "candidates": [
+        3450472,
+        3964880,
+        4155384,
+        4155464,
+        4155544,
+        4159952,
+        4182672,
+        4724464,
+        4724504,
+        4867536,
+        4928800
+      ],
+      "tt": 4724464,
+      "status": "resolved-by-delta",
+      "fp_len": 8,
+      "group_delta": 108144
+    },
+    "UnitArenaBase_allocate": {
+      "gt4o": 5408128,
+      "group": "arena",
+      "candidates": [
+        4389544,
+        4905352
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 10
+    },
+    "UnitArenaBase_free": {
+      "gt4o": 5408176,
+      "group": "arena",
+      "candidates": [
+        4389592,
+        4905400
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 9
+    },
+    "sprintf": {
+      "gt4o": 5304792,
+      "group": "libc",
+      "candidates": [
+        4875520,
+        4876568
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 22
+    },
+    "print": {
+      "gt4o": 5304608,
+      "group": "libc",
+      "candidates": [
+        4875336,
+        4909176,
+        4909408
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 23
+    },
+    "sceOpen": {
+      "gt4o": 6157112,
+      "group": "sce",
+      "candidates": [
+        5241200
+      ],
+      "tt": 5241200,
+      "status": "unique",
+      "fp_len": 163,
+      "group_delta": -915912
+    },
+    "sceClose": {
+      "gt4o": 6157768,
+      "group": "sce",
+      "candidates": [
+        5241856
+      ],
+      "tt": 5241856,
+      "status": "unique",
+      "fp_len": 93,
+      "group_delta": -915912
+    },
+    "sceRead": {
+      "gt4o": 6158720,
+      "group": "sce",
+      "candidates": [
+        5242808
+      ],
+      "tt": 5242808,
+      "status": "unique",
+      "fp_len": 154,
+      "group_delta": -915912
+    },
+    "sceLSeek": {
+      "gt4o": 6158144,
+      "group": "sce",
+      "candidates": [
+        5242232
+      ],
+      "tt": 5242232,
+      "status": "unique",
+      "fp_len": 142,
+      "group_delta": -915912
+    },
+    "sceGetStat": {
+      "gt4o": 6164256,
+      "group": "sce",
+      "candidates": [
+        5248344
+      ],
+      "tt": 5248344,
+      "status": "unique",
+      "fp_len": 108,
+      "group_delta": -915912
+    },
+    "sceStdioConvertError": {
+      "gt4o": 6183664,
+      "group": "sce",
+      "candidates": [
+        5266296
+      ],
+      "tt": 5266296,
+      "status": "unique-offdelta",
+      "fp_len": 13,
+      "group_delta": -915912
+    },
+    "sceMcGetDir": {
+      "gt4o": 6002208,
+      "group": "sce",
+      "candidates": [
+        5094920
+      ],
+      "tt": 5094920,
+      "status": "unique-offdelta",
+      "fp_len": 82,
+      "group_delta": -915912
+    },
+    "sceMcSync": {
+      "gt4o": 6001424,
+      "group": "sce",
+      "candidates": [
+        5094136
+      ],
+      "tt": 5094136,
+      "status": "unique-offdelta",
+      "fp_len": 48,
+      "group_delta": -915912
+    },
+    "closeStream_helper_51B478": {
+      "gt4o": 5354616,
+      "group": "misc",
+      "candidates": [
+        4975440,
+        4975488,
+        4975656
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 11
+    },
+    "closeStream_helper_51B4A8": {
+      "gt4o": 5354664,
+      "group": "misc",
+      "candidates": [
+        4939048,
+        4975704
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 20
+    },
+    "ADDR_PlayStation2_FileDeviceRo_closeStream": {
+      "gt4o": 7181964,
+      "candidates": [
+        6136684,
+        6138020,
+        6138316
+      ],
+      "tt": 6136684,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PlayStation2_FileDeviceRo_openStream": {
+      "gt4o": 7181972,
+      "candidates": [
+        6136692,
+        6138028,
+        6138324
+      ],
+      "tt": 6136692,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PlayStation2_FileDeviceRo_rawReadStream_slot": {
+      "gt4o": 7181980,
+      "candidates": [
+        6136700,
+        6138036,
+        6138332
+      ],
+      "tt": 6136700,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PDISTD_FileDevice_readStream": {
+      "gt4o": 7181988,
+      "candidates": [
+        6136708,
+        6137244,
+        6138044,
+        6138340,
+        6138580
+      ],
+      "tt": 6136708,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_IOControlStream_slot": {
+      "gt4o": 7182020,
+      "candidates": [
+        6136740,
+        6138076,
+        6138372
+      ],
+      "tt": 6136740,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_readStat": {
+      "gt4o": 7182028,
+      "candidates": [
+        6136748,
+        6138380
+      ],
+      "tt": 6136748,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_getCdOffset": {
+      "gt4o": 7182036,
+      "candidates": [
+        6136756,
+        6138388
+      ],
+      "tt": 6136756,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PlayStation2_FileDeviceRo_pipe_slot": {
+      "gt4o": 7182044,
+      "candidates": [
+        6136764,
+        6138396
+      ],
+      "tt": 6136764,
+      "status": "resolved-by-delta",
+      "group_delta": -1045280
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_GetFileEntry": {
+      "gt4o": 7182052,
+      "candidates": [
+        6136772
+      ],
+      "tt": 6136772,
+      "status": "unique",
+      "group_delta": -1045280
+    }
+  },
+  "SCES-53372": {
+    "PlayStation2_FileDeviceRo_closeStream": {
+      "gt4o": 4612160,
+      "group": "filedev",
+      "candidates": [
+        4390648
+      ],
+      "tt": 4390648,
+      "status": "unique",
+      "fp_len": 37,
+      "group_delta": -221512
+    },
+    "PlayStation2_FileDeviceRo_openStream": {
+      "gt4o": 4612312,
+      "group": "filedev",
+      "candidates": [
+        4390800
+      ],
+      "tt": 4390800,
+      "status": "unique",
+      "fp_len": 96,
+      "group_delta": -221512
+    },
+    "PlayStation2_FileDeviceRo_rawReadStream": {
+      "gt4o": 4612744,
+      "group": "filedev",
+      "candidates": [
+        4391232
+      ],
+      "tt": 4391232,
+      "status": "unique",
+      "fp_len": 112,
+      "group_delta": -221512
+    },
+    "PlayStation2_FileDeviceRo2_IOControlStream": {
+      "gt4o": 4613568,
+      "group": "filedev",
+      "candidates": [
+        4392056
+      ],
+      "tt": 4392056,
+      "status": "unique",
+      "fp_len": 54,
+      "group_delta": -221512
+    },
+    "PlayStation2_FileDeviceRo2_readStat": {
+      "gt4o": 4614832,
+      "group": "filedev",
+      "candidates": [
+        4393320
+      ],
+      "tt": 4393320,
+      "status": "unique",
+      "fp_len": 42,
+      "group_delta": -221512
+    },
+    "PlayStation2_FileDeviceRo2_getCdOffset": {
+      "gt4o": 4615168,
+      "group": "filedev",
+      "candidates": [
+        4393656
+      ],
+      "tt": 4393656,
+      "status": "unique",
+      "fp_len": 42,
+      "group_delta": -221512
+    },
+    "PlayStation2_FileDeviceRo_pipe": {
+      "gt4o": 4615344,
+      "group": "filedev",
+      "candidates": [
+        4393832
+      ],
+      "tt": 4393832,
+      "status": "unique",
+      "fp_len": 36,
+      "group_delta": -221512
+    },
+    "PlayStation2_FileDeviceRo2_GetFileEntry": {
+      "gt4o": 4587360,
+      "group": "filedev",
+      "candidates": [
+        4365848
+      ],
+      "tt": 4365848,
+      "status": "unique",
+      "fp_len": 46,
+      "group_delta": -221512
+    },
+    "PDISTD_FileDevice_readStream": {
+      "gt4o": 4599576,
+      "group": "filedev",
+      "candidates": [
+        4378064
+      ],
+      "tt": 4378064,
+      "status": "unique",
+      "fp_len": 28,
+      "group_delta": -221512
+    },
+    "PDISTD_FileDevice_setExpander": {
+      "gt4o": 4599760,
+      "group": "filedev",
+      "candidates": [
+        4378248
+      ],
+      "tt": 4378248,
+      "status": "unique",
+      "fp_len": 19,
+      "group_delta": -221512
+    },
+    "PDISTD_FileDevice_removeExpander": {
+      "gt4o": 4599840,
+      "group": "filedev",
+      "candidates": [
+        4378328
+      ],
+      "tt": 4378328,
+      "status": "unique",
+      "fp_len": 17,
+      "group_delta": -221512
+    },
+    "PDISTD_FileInternalStream_ioctl": {
+      "gt4o": 4607184,
+      "group": "filedev",
+      "candidates": [
+        4385224,
+        4385400,
+        4385672
+      ],
+      "tt": 4385672,
+      "status": "resolved-by-delta",
+      "fp_len": 20,
+      "group_delta": -221512
+    },
+    "PDISTD_FileInternalStream_getDevice": {
+      "gt4o": 4607272,
+      "group": "filedev",
+      "candidates": [],
+      "tt": null,
+      "status": "missing",
+      "fp_len": 2,
+      "group_delta": -221512
+    },
+    "PDISTD_FileStatus_FileStatus": {
+      "gt4o": 4606312,
+      "group": "filedev",
+      "candidates": [
+        1513384,
+        4373168,
+        4384800,
+        4663480,
+        5052008
+      ],
+      "tt": 4384800,
+      "status": "resolved-by-delta",
+      "fp_len": 5,
+      "group_delta": -221512
+    },
+    "PageManager_GetEntryForFile": {
+      "gt4o": 4592576,
+      "group": "filedev",
+      "candidates": [
+        4371064
+      ],
+      "tt": 4371064,
+      "status": "unique",
+      "fp_len": 32,
+      "group_delta": -221512
+    },
+    "PlaystationX_LockFileName": {
+      "gt4o": 4616288,
+      "group": "filedev",
+      "candidates": [
+        4394776
+      ],
+      "tt": 4394776,
+      "status": "unique",
+      "fp_len": 16,
+      "group_delta": -221512
+    },
+    "PlayStationX_UnlockFileName": {
+      "gt4o": 4616320,
+      "group": "filedev",
+      "candidates": [
+        2508992,
+        2825720,
+        3115360,
+        3115440,
+        3115520,
+        3119928,
+        3142648,
+        4394808,
+        4394848,
+        4679192
+      ],
+      "tt": 4394808,
+      "status": "resolved-by-delta",
+      "fp_len": 8,
+      "group_delta": -221512
+    },
+    "UnitArenaBase_allocate": {
+      "gt4o": 5408128,
+      "group": "arena",
+      "candidates": [
+        2930384,
+        4698424
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 10
+    },
+    "UnitArenaBase_free": {
+      "gt4o": 5408176,
+      "group": "arena",
+      "candidates": [
+        2930432,
+        4698472
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 9
+    },
+    "sprintf": {
+      "gt4o": 5304792,
+      "group": "libc",
+      "candidates": [
+        4611840,
+        4612888
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 22
+    },
+    "print": {
+      "gt4o": 5304608,
+      "group": "libc",
+      "candidates": [
+        4611656,
+        4720600,
+        4720832
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 23
+    },
+    "sceOpen": {
+      "gt4o": 6157112,
+      "group": "sce",
+      "candidates": [
+        5255344
+      ],
+      "tt": 5255344,
+      "status": "unique",
+      "fp_len": 163,
+      "group_delta": -901768
+    },
+    "sceClose": {
+      "gt4o": 6157768,
+      "group": "sce",
+      "candidates": [
+        5256000
+      ],
+      "tt": 5256000,
+      "status": "unique",
+      "fp_len": 93,
+      "group_delta": -901768
+    },
+    "sceRead": {
+      "gt4o": 6158720,
+      "group": "sce",
+      "candidates": [
+        5256952
+      ],
+      "tt": 5256952,
+      "status": "unique",
+      "fp_len": 154,
+      "group_delta": -901768
+    },
+    "sceLSeek": {
+      "gt4o": 6158144,
+      "group": "sce",
+      "candidates": [
+        5256376
+      ],
+      "tt": 5256376,
+      "status": "unique",
+      "fp_len": 142,
+      "group_delta": -901768
+    },
+    "sceGetStat": {
+      "gt4o": 6164256,
+      "group": "sce",
+      "candidates": [
+        5262488
+      ],
+      "tt": 5262488,
+      "status": "unique",
+      "fp_len": 108,
+      "group_delta": -901768
+    },
+    "sceStdioConvertError": {
+      "gt4o": 6183664,
+      "group": "sce",
+      "candidates": [
+        5280440
+      ],
+      "tt": 5280440,
+      "status": "unique-offdelta",
+      "fp_len": 13,
+      "group_delta": -901768
+    },
+    "sceMcGetDir": {
+      "gt4o": 6002208,
+      "group": "sce",
+      "candidates": [
+        5112104
+      ],
+      "tt": 5112104,
+      "status": "unique-offdelta",
+      "fp_len": 82,
+      "group_delta": -901768
+    },
+    "sceMcSync": {
+      "gt4o": 6001424,
+      "group": "sce",
+      "candidates": [
+        5111320
+      ],
+      "tt": 5111320,
+      "status": "unique-offdelta",
+      "fp_len": 48,
+      "group_delta": -901768
+    },
+    "closeStream_helper_51B478": {
+      "gt4o": 5354616,
+      "group": "misc",
+      "candidates": [
+        4661448,
+        4661496,
+        4661664
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 11
+    },
+    "closeStream_helper_51B4A8": {
+      "gt4o": 5354664,
+      "group": "misc",
+      "candidates": [
+        4622856,
+        4661712
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 20
+    },
+    "ADDR_PlayStation2_FileDeviceRo_closeStream": {
+      "gt4o": 7181964,
+      "candidates": [
+        6134532,
+        6135868,
+        6136164
+      ],
+      "tt": 6134532,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PlayStation2_FileDeviceRo_openStream": {
+      "gt4o": 7181972,
+      "candidates": [
+        6134540,
+        6135876,
+        6136172
+      ],
+      "tt": 6134540,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PlayStation2_FileDeviceRo_rawReadStream_slot": {
+      "gt4o": 7181980,
+      "candidates": [
+        6134548,
+        6135884,
+        6136180
+      ],
+      "tt": 6134548,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PDISTD_FileDevice_readStream": {
+      "gt4o": 7181988,
+      "candidates": [
+        6134556,
+        6135092,
+        6135892,
+        6136188,
+        6136428
+      ],
+      "tt": 6134556,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_IOControlStream_slot": {
+      "gt4o": 7182020,
+      "candidates": [
+        6134588,
+        6135924,
+        6136220
+      ],
+      "tt": 6134588,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_readStat": {
+      "gt4o": 7182028,
+      "candidates": [
+        6134596,
+        6136228
+      ],
+      "tt": 6134596,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_getCdOffset": {
+      "gt4o": 7182036,
+      "candidates": [
+        6134604,
+        6136236
+      ],
+      "tt": 6134604,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PlayStation2_FileDeviceRo_pipe_slot": {
+      "gt4o": 7182044,
+      "candidates": [
+        6134612,
+        6136244
+      ],
+      "tt": 6134612,
+      "status": "resolved-by-delta",
+      "group_delta": -1047432
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_GetFileEntry": {
+      "gt4o": 7182052,
+      "candidates": [
+        6134620
+      ],
+      "tt": 6134620,
+      "status": "unique",
+      "group_delta": -1047432
+    }
+  },
+  "SCPS-15105": {
+    "PlayStation2_FileDeviceRo_closeStream": {
+      "gt4o": 4612160,
+      "group": "filedev",
+      "candidates": [
+        4695728
+      ],
+      "tt": 4695728,
+      "status": "unique",
+      "fp_len": 37,
+      "group_delta": 83568
+    },
+    "PlayStation2_FileDeviceRo_openStream": {
+      "gt4o": 4612312,
+      "group": "filedev",
+      "candidates": [
+        4695880
+      ],
+      "tt": 4695880,
+      "status": "unique",
+      "fp_len": 96,
+      "group_delta": 83568
+    },
+    "PlayStation2_FileDeviceRo_rawReadStream": {
+      "gt4o": 4612744,
+      "group": "filedev",
+      "candidates": [
+        4696312
+      ],
+      "tt": 4696312,
+      "status": "unique",
+      "fp_len": 112,
+      "group_delta": 83568
+    },
+    "PlayStation2_FileDeviceRo2_IOControlStream": {
+      "gt4o": 4613568,
+      "group": "filedev",
+      "candidates": [
+        4697136
+      ],
+      "tt": 4697136,
+      "status": "unique",
+      "fp_len": 54,
+      "group_delta": 83568
+    },
+    "PlayStation2_FileDeviceRo2_readStat": {
+      "gt4o": 4614832,
+      "group": "filedev",
+      "candidates": [
+        4698400
+      ],
+      "tt": 4698400,
+      "status": "unique",
+      "fp_len": 42,
+      "group_delta": 83568
+    },
+    "PlayStation2_FileDeviceRo2_getCdOffset": {
+      "gt4o": 4615168,
+      "group": "filedev",
+      "candidates": [
+        4698736
+      ],
+      "tt": 4698736,
+      "status": "unique",
+      "fp_len": 42,
+      "group_delta": 83568
+    },
+    "PlayStation2_FileDeviceRo_pipe": {
+      "gt4o": 4615344,
+      "group": "filedev",
+      "candidates": [
+        4698912
+      ],
+      "tt": 4698912,
+      "status": "unique",
+      "fp_len": 36,
+      "group_delta": 83568
+    },
+    "PlayStation2_FileDeviceRo2_GetFileEntry": {
+      "gt4o": 4587360,
+      "group": "filedev",
+      "candidates": [
+        4670928
+      ],
+      "tt": 4670928,
+      "status": "unique",
+      "fp_len": 46,
+      "group_delta": 83568
+    },
+    "PDISTD_FileDevice_readStream": {
+      "gt4o": 4599576,
+      "group": "filedev",
+      "candidates": [
+        4683144
+      ],
+      "tt": 4683144,
+      "status": "unique",
+      "fp_len": 28,
+      "group_delta": 83568
+    },
+    "PDISTD_FileDevice_setExpander": {
+      "gt4o": 4599760,
+      "group": "filedev",
+      "candidates": [
+        4683328
+      ],
+      "tt": 4683328,
+      "status": "unique",
+      "fp_len": 19,
+      "group_delta": 83568
+    },
+    "PDISTD_FileDevice_removeExpander": {
+      "gt4o": 4599840,
+      "group": "filedev",
+      "candidates": [
+        4683408
+      ],
+      "tt": 4683408,
+      "status": "unique",
+      "fp_len": 17,
+      "group_delta": 83568
+    },
+    "PDISTD_FileInternalStream_ioctl": {
+      "gt4o": 4607184,
+      "group": "filedev",
+      "candidates": [
+        4690304,
+        4690480,
+        4690752
+      ],
+      "tt": 4690752,
+      "status": "resolved-by-delta",
+      "fp_len": 20,
+      "group_delta": 83568
+    },
+    "PDISTD_FileInternalStream_getDevice": {
+      "gt4o": 4607272,
+      "group": "filedev",
+      "candidates": [],
+      "tt": null,
+      "status": "missing",
+      "fp_len": 2,
+      "group_delta": 83568
+    },
+    "PDISTD_FileStatus_FileStatus": {
+      "gt4o": 4606312,
+      "group": "filedev",
+      "candidates": [
+        1535696,
+        4656280,
+        4678248,
+        4689880,
+        4882384
+      ],
+      "tt": 4689880,
+      "status": "resolved-by-delta",
+      "fp_len": 5,
+      "group_delta": 83568
+    },
+    "PageManager_GetEntryForFile": {
+      "gt4o": 4592576,
+      "group": "filedev",
+      "candidates": [
+        4676144
+      ],
+      "tt": 4676144,
+      "status": "unique",
+      "fp_len": 32,
+      "group_delta": 83568
+    },
+    "PlaystationX_LockFileName": {
+      "gt4o": 4616288,
+      "group": "filedev",
+      "candidates": [
+        4699856
+      ],
+      "tt": 4699856,
+      "status": "unique",
+      "fp_len": 16,
+      "group_delta": 83568
+    },
+    "PlayStationX_UnlockFileName": {
+      "gt4o": 4616320,
+      "group": "filedev",
+      "candidates": [
+        3429160,
+        3943408,
+        4132264,
+        4132344,
+        4132424,
+        4136624,
+        4158888,
+        4699888,
+        4699928,
+        4960912
+      ],
+      "tt": 4699888,
+      "status": "resolved-by-delta",
+      "fp_len": 8,
+      "group_delta": 83568
+    },
+    "UnitArenaBase_allocate": {
+      "gt4o": 5408128,
+      "group": "arena",
+      "candidates": [
+        4364552,
+        4994728
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 10
+    },
+    "UnitArenaBase_free": {
+      "gt4o": 5408176,
+      "group": "arena",
+      "candidates": [
+        4364600,
+        4994776
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 9
+    },
+    "sprintf": {
+      "gt4o": 5304792,
+      "group": "libc",
+      "candidates": [
+        4969000,
+        4970048
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 22
+    },
+    "print": {
+      "gt4o": 5304608,
+      "group": "libc",
+      "candidates": [
+        4968816,
+        4998112
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 23
+    },
+    "sceOpen": {
+      "gt4o": 6157112,
+      "group": "sce",
+      "candidates": [
+        5204784
+      ],
+      "tt": 5204784,
+      "status": "unique",
+      "fp_len": 163,
+      "group_delta": -952328
+    },
+    "sceClose": {
+      "gt4o": 6157768,
+      "group": "sce",
+      "candidates": [
+        5205440
+      ],
+      "tt": 5205440,
+      "status": "unique",
+      "fp_len": 93,
+      "group_delta": -952328
+    },
+    "sceRead": {
+      "gt4o": 6158720,
+      "group": "sce",
+      "candidates": [
+        5206392
+      ],
+      "tt": 5206392,
+      "status": "unique",
+      "fp_len": 154,
+      "group_delta": -952328
+    },
+    "sceLSeek": {
+      "gt4o": 6158144,
+      "group": "sce",
+      "candidates": [
+        5205816
+      ],
+      "tt": 5205816,
+      "status": "unique",
+      "fp_len": 142,
+      "group_delta": -952328
+    },
+    "sceGetStat": {
+      "gt4o": 6164256,
+      "group": "sce",
+      "candidates": [
+        5211928
+      ],
+      "tt": 5211928,
+      "status": "unique",
+      "fp_len": 108,
+      "group_delta": -952328
+    },
+    "sceStdioConvertError": {
+      "gt4o": 6183664,
+      "group": "sce",
+      "candidates": [
+        5229880
+      ],
+      "tt": 5229880,
+      "status": "unique-offdelta",
+      "fp_len": 13,
+      "group_delta": -952328
+    },
+    "sceMcGetDir": {
+      "gt4o": 6002208,
+      "group": "sce",
+      "candidates": [
+        5061544
+      ],
+      "tt": 5061544,
+      "status": "unique-offdelta",
+      "fp_len": 82,
+      "group_delta": -952328
+    },
+    "sceMcSync": {
+      "gt4o": 6001424,
+      "group": "sce",
+      "candidates": [
+        5060760
+      ],
+      "tt": 5060760,
+      "status": "unique-offdelta",
+      "fp_len": 48,
+      "group_delta": -952328
+    },
+    "closeStream_helper_51B478": {
+      "gt4o": 5354616,
+      "group": "misc",
+      "candidates": [
+        4880352,
+        4880400,
+        4880568
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 11
+    },
+    "closeStream_helper_51B4A8": {
+      "gt4o": 5354664,
+      "group": "misc",
+      "candidates": [
+        4844064,
+        4880616
+      ],
+      "tt": null,
+      "status": "ambiguous",
+      "fp_len": 20
+    },
+    "ADDR_PlayStation2_FileDeviceRo_closeStream": {
+      "gt4o": 7181964,
+      "candidates": [
+        6081236,
+        6082572,
+        6082868
+      ],
+      "tt": 6081236,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PlayStation2_FileDeviceRo_openStream": {
+      "gt4o": 7181972,
+      "candidates": [
+        6081244,
+        6082580,
+        6082876
+      ],
+      "tt": 6081244,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PlayStation2_FileDeviceRo_rawReadStream_slot": {
+      "gt4o": 7181980,
+      "candidates": [
+        6081252,
+        6082588,
+        6082884
+      ],
+      "tt": 6081252,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PDISTD_FileDevice_readStream": {
+      "gt4o": 7181988,
+      "candidates": [
+        6081260,
+        6081796,
+        6082596,
+        6082892,
+        6083132
+      ],
+      "tt": 6081260,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_IOControlStream_slot": {
+      "gt4o": 7182020,
+      "candidates": [
+        6081292,
+        6082628,
+        6082924
+      ],
+      "tt": 6081292,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_readStat": {
+      "gt4o": 7182028,
+      "candidates": [
+        6081300,
+        6082932
+      ],
+      "tt": 6081300,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_getCdOffset": {
+      "gt4o": 7182036,
+      "candidates": [
+        6081308,
+        6082940
+      ],
+      "tt": 6081308,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PlayStation2_FileDeviceRo_pipe_slot": {
+      "gt4o": 7182044,
+      "candidates": [
+        6081316,
+        6082948
+      ],
+      "tt": 6081316,
+      "status": "resolved-by-delta",
+      "group_delta": -1100728
+    },
+    "ADDR_PlayStation2_FileDeviceRo2_GetFileEntry": {
+      "gt4o": 7182052,
+      "candidates": [
+        6081324
+      ],
+      "tt": 6081324,
+      "status": "unique",
+      "group_delta": -1100728
+    }
+  }
+}

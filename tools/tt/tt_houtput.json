@@ -1,0 +1,26 @@
+{
+  "SCUS-97502": {
+    "anchor": 2793232,
+    "anchor_similarity": 0.989,
+    "ADDR_HOutput_Handler": 5751852,
+    "handler_stub": 2793184,
+    "ADDR_ADHOC_printf": 5398960,
+    "ADDR_ADHOC_debug": 5400672
+  },
+  "SCES-53372": {
+    "anchor": 4504864,
+    "anchor_similarity": 0.989,
+    "ADDR_HOutput_Handler": 5830716,
+    "handler_stub": 4504816,
+    "ADDR_ADHOC_printf": 5532192,
+    "ADDR_ADHOC_debug": 5533904
+  },
+  "SCPS-15105": {
+    "anchor": 2776920,
+    "anchor_similarity": 0.989,
+    "ADDR_HOutput_Handler": 5696372,
+    "handler_stub": 2776872,
+    "ADDR_ADHOC_printf": 5361992,
+    "ADDR_ADHOC_debug": 5363704
+  }
+}

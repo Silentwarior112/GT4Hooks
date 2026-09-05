@@ -1,0 +1,41 @@
+{
+  "SCUS-97502": {
+    "PDISTD_FileDevice_removeExpander": 4707984,
+    "closeStream_helper_51B478": 4975656,
+    "closeStream_helper_51B4A8": 4975704,
+    "UnitArenaBase_free": 4905400,
+    "PlaystationX_LockFileName": 4724432,
+    "openStream_helper_51B370": 4975392,
+    "PDISTD_FileDevice_setExpander": 4707904,
+    "UnitArenaBase_allocate": 4905352,
+    "PlayStationX_UnlockFileName": 4724464,
+    "UnitArena_state_field0C": 7797984,
+    "UnitArena_stream_state": 7797952
+  },
+  "SCES-53372": {
+    "PDISTD_FileDevice_removeExpander": 4378328,
+    "closeStream_helper_51B478": 4661664,
+    "closeStream_helper_51B4A8": 4661712,
+    "UnitArenaBase_free": 4698472,
+    "PlaystationX_LockFileName": 4394776,
+    "openStream_helper_51B370": 4661400,
+    "PDISTD_FileDevice_setExpander": 4378248,
+    "UnitArenaBase_allocate": 4698424,
+    "PlayStationX_UnlockFileName": 4394808,
+    "UnitArena_state_field0C": 7797344,
+    "UnitArena_stream_state": 7797312
+  },
+  "SCPS-15105": {
+    "PDISTD_FileDevice_removeExpander": 4683408,
+    "closeStream_helper_51B478": 4880568,
+    "closeStream_helper_51B4A8": 4880616,
+    "UnitArenaBase_free": 4994776,
+    "PlaystationX_LockFileName": 4699856,
+    "openStream_helper_51B370": 4880304,
+    "PDISTD_FileDevice_setExpander": 4683328,
+    "UnitArenaBase_allocate": 4994728,
+    "PlayStationX_UnlockFileName": 4699888,
+    "UnitArena_state_field0C": 7739040,
+    "UnitArena_stream_state": 7739008
+  }
+}
