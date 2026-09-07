@@ -18,6 +18,7 @@ organized around that: one shared engine layer, and a thin layer per game.
   load from the memory card properly.
 * **`mCarGarage::getPerformanceIndex`** — a new adhoc method returning a car's
   performance index. Also a worked example of extending a built-in adhoc module.
+  Run with ```var pIndex = main::menu::MCarGarage::getPerformanceIndex(current_car);```
 * **`Custom MStorage data handler`** - Added support for extra data variables to be
   loaded into memory that persist across all game transitions, manipulated with adhoc,
   then saved to the memory card as an external file that holds all the variables.
