@@ -19,6 +19,40 @@ extern void (*HInt_dtor)(HInt* this_, int flag);
 extern void (*HFloat_HFloat)(HFloat* this_, float value);
 extern void (*HFloat_dtor)(HFloat* this_, int flag);
 
+// HString. Takes a POINTER to a std::string, not a char* - see STD_STRING.
+extern void (*HString_HString)(HString* this_, void* stdString);
+
+/*
+    HNil. Same shape as HInt_HInt with nothing to carry: it takes the ADDRESS of
+    the caller's handle variable and fills it. Release it with HValue_dtor.
+
+    Hand this to script rather than leaving a return value untouched. A native
+    that never writes its return slot yields a null handle, and while adhoc's own
+    `nil` is also a null, a null is only safe in a comparison - `if (x)` on one
+    faults. See ADDR_HNil_HNil in the target header for the disassembly.
+*/
+extern void (*HNil_HNil)(HObject* this_);
+
+/*
+    Byte offsets of the conversion entries in an adhoc value's vtable.
+
+    Every value type implements all of them at the same offsets, so a caller can
+    convert a value without knowing its type. Each entry is 8 bytes,
+    { int16 adjustor, int16 pad, void* fn }, and the game invokes one like this
+    (hObject::toInt, 0x4F2E88):
+
+        object = *slot;  vtable = *(object + 4);  entry = vtable + offset;
+        fn(object + *(short*)entry)
+
+    CSTR is the exception to "every type": hInt and hFloat do NOT override it
+    and inherit a default returning the empty string, so it is only good for a
+    value already known to be a string. TOSTRING is the generic one.
+*/
+#define ADHOC_VT_TOSTRING 0x18
+#define ADHOC_VT_CSTR     0x60
+#define ADHOC_VT_TOINT    0x68
+#define ADHOC_VT_TOFLOAT  0x70
+
 // ADHOC
 extern void (*ADHOC_Deallocate)(void* pool, void *buffer, int size);
 

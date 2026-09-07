@@ -1,0 +1,97 @@
+//-----------------------
+// Extra Data Helper Script for GT4Hooks by Silentwarior112
+//-----------------------
+
+// InitializeExtraData(); 		// Creates mc0:/<game save folder>/ExtraData.txt and populates each variable with the default values
+// LoadExtraData(); 			// Loads mc0:/<game save folder>/ExtraData.txt
+// SaveExtraData(); 			// Updates all extra variables for mc0:/<game save folder>/ExtraData.txt
+
+// main::menu::MStorage::getStorage(1).loadVars(path)	// Loads all extra data into memory. 0 = HDD, 1 = mc0, 1 = mc1
+// main::menu::MStorage::getStorage(1).saveVars(path)	// Saves all extra data from memory to the file 0 = HDD, 1 = mc0, 1 = mc1
+// main::menu::MStorage::getExtraData(name) 			// Fetches an extraData variable from memory
+// main::menu::MStorage::setExtraData(name, value) 		// Sets an extraData variable in memory. Strings ≤ 255 bytes, no control characters. Anything else — array, map, nil — is refused
+
+// main::menu::MStorage::getStorage(1).setVar(path, "variable", value) 	// Fetches an extraData variable from the file instead of memory. Not really needed
+// main::menu::MStorage::getStorage(1).getVar(path, "variable") 		// Sets an extraData variable to the file instead of memory. Not really needed
+// main::menu::MStorage::getStorage(1).delVar(path, name) 				// "Deletes" an extraData variable. idk if this needs to exist. Returns 1 if removed, 0 otherwise
+
+// main::menu::MStorage::getStorage(1).read(path) 						// Fetches the whole file as a string
+// main::menu::MStorage::getStorage(1).write(path, contents)			// A dumb text/data inserter. Writes whatever is inside the second argument from the beginning of the file.
+// main::menu::MStorage::getStorage(1).ping()							// Diagnostic, should return 42. If not, something's wrong
+// main::menu::MStorage::getStorage(1).echoVar(value)					// Diagnostic, sends the argument through a round-trip.
+
+static extraDataPath = "/BASCUS-97436GAMEDATA/ExtraData.txt";
+
+//
+// Additional variables: Add more here to support more
+// Name, default value.
+// extraDataList sets the default values when first creating a new save game
+// 1–63 bytes, no control characters, may not start with #
+// Max 64 variables currently. Code Hook must be edited to increase the maximum amount of variables here
+static extraDataList = [
+
+["extraInt0", 0],
+["extraFloat0", 0.0],
+["extraString0", "none"]
+
+];
+
+//
+// functions
+//
+
+function InitializeExtraData()
+{
+    var storage = main::menu::MStorage::getStorage(1);
+    if (storage == nil)
+        return false;
+
+    // Merge defaults with whatever is already stored: getVars fills the table
+    // from the card and leaves rows the file lacks holding their defaults, then
+    // setVars writes the merged result back. Existing values survive, and a
+    // variable added by a later version gets seeded.
+    if (storage.getVars(extraDataPath, extraDataList) < 0)
+    {
+        print "ExtraData: cannot read the card - not initializing\n";
+        return false;
+    }
+
+    if (!storage.setVars(extraDataPath, extraDataList))
+        return false;
+
+    // Into memory last - setVars reloads the shared buffer, so loading before it would be undone.
+    return storage.loadVars(extraDataPath) >= 0;
+}
+
+
+function LoadExtraData()
+{
+    var storage = main::menu::MStorage::getStorage(1);
+    if (storage == nil)
+        return false;
+
+    if (storage.loadVars(extraDataPath) < 0) // Attempt to load
+    {
+        print "ExtraData: load failed - do not save this session\n";
+        return false;
+    }
+
+    return true;
+}
+
+
+function SaveExtraData()
+{
+    var storage = main::menu::MStorage::getStorage(1);
+    if (storage == nil)
+        return false;
+
+    if (!storage.saveVars(extraDataPath)) // Attempt to save
+    {
+        print "ExtraData: save failed - reason is on the console\n";
+        return false;
+    }
+	
+	return true;
+}
+   

@@ -194,6 +194,11 @@ typedef struct HFloat
   HObject Object;
 } HFloat;
 
+typedef struct HString
+{
+  HObject Object;
+} HString;
+
 typedef struct MCarGarage
 {
   HObject Object;

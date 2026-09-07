@@ -26,6 +26,16 @@
 
 #include "core/ps2/Sio.h"
 
+/*
+    A note on colour, since it is the obvious thing to reach for: there is none
+    to be had. PCSX2 funnels every SIO byte into one fixed console channel -
+    ConsoleLogFromVM<Color_Cyan> eeConsole (DebugTools/Debug.h), written from
+    HwWrite.cpp - so everything the game prints is cyan. The colour is a
+    compile-time template parameter, and the bytes pass through
+    ShiftJIS_ConvertString on the way, which would mangle ANSI escapes into
+    literal junk rather than colouring anything. Loud has to mean shape.
+*/
+
 #if HOSTFS_PRINT
 
 #include "core/game/IO.h"
@@ -44,4 +54,31 @@
 
 #else
 #define LOG(...) do { } while (0)
+#endif
+
+/*
+    WARN is for the things you want to see even in a quiet build: right now,
+    a streamed file that could not be served from the host and is therefore
+    being read from the disc image instead. That is not an error - the game
+    plays fine - but it silently makes an edited file do nothing, which cost
+    a long debugging session once already. So it is deliberately separate from
+    HOSTFS_PRINT and on by default.
+*/
+#ifndef HOSTFS_WARN
+#define HOSTFS_WARN 1
+#endif
+
+#if HOSTFS_WARN
+
+#include "core/game/IO.h"
+
+#define WARN(...)                        \
+    do {                                 \
+        char _warn_buf[256];             \
+        _sprintf(_warn_buf, __VA_ARGS__); \
+        Sio_Puts(_warn_buf);             \
+    } while (0)
+
+#else
+#define WARN(...) do { } while (0)
 #endif

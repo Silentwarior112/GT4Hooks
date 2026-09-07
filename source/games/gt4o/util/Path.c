@@ -61,14 +61,24 @@ char *_dirname (char *path)
   return path;
 }
 
+/*
+    Returns the component after the last '/', or the whole string if there is
+    none.
+
+    The obvious loop - `for (size_t i = strlen(p) - 1; i; i--)` - is wrong twice
+    over: on an empty string strlen() - 1 underflows an unsigned and walks off
+    the front, and the `i` condition never tests index 0, so a root-level path
+    like "/test.txt" never finds its slash and returns the leading '/' with it.
+*/
 char* get_file_name(char* fullpath)
 {
-   for(size_t i = __strlen(fullpath) - 1; i; i--)  
-   {
+    int len = __strlen(fullpath);
+
+    for (int i = len - 1; i >= 0; i--)
+    {
         if (fullpath[i] == '/')
-        {
-            return &fullpath[i+1];
-        }
+            return &fullpath[i + 1];
     }
+
     return fullpath;
 }

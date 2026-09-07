@@ -208,10 +208,23 @@ typedef struct FileDeviceRo2
 /////////////////////////////////
 // IOCTL
 /////////////////////////////////
+/*
+    Mode 0 asks the device where a file lives, for the benefit of an IOP RPC
+    server that will open it itself. FileDeviceRo::pipe fills it in from a
+    readStat, and it is the only thing .ads and .pss ever ask the device - both
+    open with fileMode 3, take this answer, close the stream, and hand the three
+    fields straight to PBGM or MPG.
+
+    Name is the interesting field. It is set to "" when the device is reading a
+    real disc, and only filled with a path when it is not - which is the same
+    "empty means read the disc by sector" convention the IOP uses everywhere.
+*/
 typedef struct IOControlStreamCommand0
 {
-    int Mode;
-    char padding[0x0C];
+    int  Mode;       /* in : 0 */
+    int  Sector;     /* out: FileStatus.DataOffset, an LBA in 2048-byte sectors */
+    int  Size;       /* out: FileStatus.RealSize, in bytes */
+    char Name[0x70]; /* out: "" for the disc, else a path for the IOP to open */
 } IOControlStreamCommand0;
 
 typedef struct IOControlStreamCommand1

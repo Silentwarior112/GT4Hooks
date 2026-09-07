@@ -21,6 +21,12 @@ void (*HInt_dtor)(HInt* this, int flag) = (void*)ADDR_HInt_dtor;
 void (*HFloat_HFloat)(HFloat* this, float value) = (void*)ADDR_HFloat_HFloat;
 void (*HFloat_dtor)(HFloat* this, int flag) = (void*)ADDR_HFloat_dtor;
 
+// HString
+void (*HString_HString)(HString* this, void* stdString) = (void*)ADDR_HString_HString;
+
+// HNil
+void (*HNil_HNil)(HObject* this) = (void*)ADDR_HNil_HNil;
+
 // hModule
 void (*hModule_defineFunction)(void*, hModule* thisModule, char* functionName, Adhoc_function_cb function) = (void*)ADDR_hModule_defineFunction;
 void (*hModule_defineMethod)(void*, hModule* thisModule, char* methodName, Adhoc_method_cb method) = (void*)ADDR_hModule_defineMethod;

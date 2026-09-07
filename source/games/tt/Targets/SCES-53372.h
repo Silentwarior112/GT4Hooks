@@ -47,6 +47,19 @@
 #define ADDR_FileStream_flushWrite 0x4721A0
 #define ADDR_FileStream_release    0x4721D0
 
+/* STRP RPC wrappers used to stream a loose file straight into the IOP - see
+   OpenStreamedFromHost in core/hooks/HostFs.c. Both sit next to the helpers
+   above: command 3 (open) is acquire - 0x30, command 1 (stat) is
+   release + 0x58. Verified by disassembly, not by that arithmetic. */
+#define ADDR_FileStream_open 0x472068
+#define ADDR_FileStream_stat 0x472228
+
+/* The FileDeviceRo2 vtable word holding FileDeviceRo::pipe, hooked to redirect
+   .ads and .pss - see HOOK_HostFs__PlayStation2_FileDeviceRo_pipe. This is a
+   DATA address (the function-pointer word), like the openStream slot, not the
+   function itself; the function stays reachable at ADDR_..._pipe above. */
+#define ADDR_PlayStation2_FileDeviceRo_pipe_VTSlot 0x5D9B54
+
 /* UnitArenaBase globals that back FileInternalStream::State. */
 #define ADDR_UnitArena_StreamState  0x76FA40
 #define ADDR_UnitArena_StateField0C 0x76FA60

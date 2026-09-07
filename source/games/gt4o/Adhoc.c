@@ -2,6 +2,33 @@
 #include "core/game/IO.h"
 
 #include "core/ps2/Memory.h"
+#include "Adhoc.h"
+#include "GameFunctions/Adhoc.h"
+
+/* See the comment on the declaration - the float has to reach $f12 by hand. */
+void ADHOC_MakeFloat(HFloat** slot, float value)
+{
+    union { float f; unsigned int u; } bits;
+    bits.f = value;
+
+    {
+        register void*        _a0 __asm__("$4")  = (void*)slot;
+        register unsigned int _v  __asm__("$8")  = bits.u;
+        register void*        _fn __asm__("$25") = (void*)HFloat_HFloat;
+
+        __asm__ __volatile__(
+            ".set push\n\t"
+            ".set noreorder\n\t"
+            "mtc1  %2, $f12\n\t"
+            "jalr  %1\n\t"
+            "nop\n\t"
+            ".set pop"
+            : "+r"(_a0)
+            : "r"(_fn), "r"(_v)
+            : "$2", "$3", "$5", "$6", "$7", "$9", "$10", "$11", "$12", "$13",
+              "$14", "$15", "$24", "$31", "memory");
+    }
+}
 
 
 void (*funcs[])() = {
