@@ -18,6 +18,32 @@ organized around that: one shared engine layer, and a thin layer per game.
   load from the memory card properly.
 * **`mCarGarage::getPerformanceIndex`** — a new adhoc method returning a car's
   performance index. Also a worked example of extending a built-in adhoc module.
+* **`Custom MStorage data handler`** - Added support for extra data variables to be
+  loaded into memory that persist across all game transitions, manipulated with adhoc,
+  then saved to the memory card as an external file that holds all the variables.
+  Integers, floats, and strings are supported.
+```
+Place these function calls at the correct spots in ..share/memorycard.ad,
+and #include extraData.ad at the top: (See the templates provided at source/games/gt4o/templates/adhocScript/)
+InitializeExtraData(); 		// Creates mc0:/<game save folder>/ExtraData.txt and populates each variable with the default values
+LoadExtraData(); 			// Loads mc0:/<game save folder>/ExtraData.txt
+SaveExtraData(); 			// Updates all extra variables for mc0:/<game save folder>/ExtraData.txt
+
+Call these functions in any adhoc script:
+main::menu::MStorage::getStorage(1).loadVars(path)	// Loads all extra data into memory. 0 = HDD, 1 = mc0, 1 = mc1
+main::menu::MStorage::getStorage(1).saveVars(path)	// Saves all extra data from memory to the file 0 = HDD, 1 = mc0, 1 = mc1
+main::menu::MStorage::getExtraData(name) 			// Fetches an extraData variable from memory
+main::menu::MStorage::setExtraData(name, value) 	// Sets an extraData variable in memory. Strings ≤ 255 bytes, no control characters. Anything else — array, map, nil — is refused
+
+main::menu::MStorage::getStorage(1).setVar(path, "variable", value) 	// Fetches an extraData variable from the file instead of memory. Not really needed
+main::menu::MStorage::getStorage(1).getVar(path, "variable") 		// Sets an extraData variable to the file instead of memory. Not really needed
+main::menu::MStorage::getStorage(1).delVar(path, name) 				// "Deletes" an extraData variable. idk if this needs to exist. Returns 1 if removed, 0 otherwise
+
+main::menu::MStorage::getStorage(1).read(path) 						// Fetches the whole file as a string
+main::menu::MStorage::getStorage(1).write(path, contents)			// A dumb text/data inserter. Writes whatever is inside the second argument from the beginning of the file.
+main::menu::MStorage::getStorage(1).ping()							// Diagnostic, should return 42. If not, something's wrong
+main::menu::MStorage::getStorage(1).echoVar(value)					// Diagnostic, sends the argument through a round-trip.
+```
 
 ### Tourist Trophy
 * **HostFS** — loose file loading.
