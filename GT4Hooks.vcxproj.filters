@@ -37,6 +37,9 @@
     <Filter Include="Game gt4o\Targets">
       <UniqueIdentifier>{d32e2060-6424-50ec-9f42-91ae97122017}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game gt4o\reserve">
+      <UniqueIdentifier>{34ce0e20-1d96-5f08-bc60-d77663f22972}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game gt4o\util">
       <UniqueIdentifier>{abc426ae-882d-5318-b3cc-cb19c4552784}</UniqueIdentifier>
     </Filter>
@@ -66,6 +69,9 @@
     <ClCompile Include="source\core\hooks\HostFs.c">
       <Filter>Core\hooks</Filter>
     </ClCompile>
+    <ClCompile Include="source\core\hooks\MakerList.c">
+      <Filter>Core\hooks</Filter>
+    </ClCompile>
     <ClCompile Include="source\core\ps2\Memory.c">
       <Filter>Core\ps2</Filter>
     </ClCompile>
@@ -85,6 +91,9 @@
       <Filter>Game gt4o\Adhoc</Filter>
     </ClCompile>
     <ClCompile Include="source\games\gt4o\CameraSys.c">
+      <Filter>Game gt4o</Filter>
+    </ClCompile>
+    <ClCompile Include="source\games\gt4o\DevRam.c">
       <Filter>Game gt4o</Filter>
     </ClCompile>
     <ClCompile Include="source\games\gt4o\GameFunctions\Adhoc.c">
@@ -108,17 +117,44 @@
     <ClCompile Include="source\games\gt4o\GameFunctions\PolyphonyGL.c">
       <Filter>Game gt4o\GameFunctions</Filter>
     </ClCompile>
+    <ClCompile Include="source\games\gt4o\HeapWatch.c">
+      <Filter>Game gt4o</Filter>
+    </ClCompile>
+    <ClCompile Include="source\games\gt4o\LicenseReplays.c">
+      <Filter>Game gt4o</Filter>
+    </ClCompile>
     <ClCompile Include="source\games\gt4o\MCarGarage.c">
       <Filter>Game gt4o</Filter>
     </ClCompile>
     <ClCompile Include="source\games\gt4o\MStorage.c">
       <Filter>Game gt4o</Filter>
     </ClCompile>
+    <ClCompile Include="source\games\gt4o\MakerNames.c">
+      <Filter>Game gt4o</Filter>
+    </ClCompile>
+    <ClCompile Include="source\games\gt4o\RaceAspect.c">
+      <Filter>Game gt4o</Filter>
+    </ClCompile>
+    <ClCompile Include="source\games\gt4o\RaceGpb.c">
+      <Filter>Game gt4o</Filter>
+    </ClCompile>
+    <ClCompile Include="source\games\gt4o\RaceHud.c">
+      <Filter>Game gt4o</Filter>
+    </ClCompile>
     <ClCompile Include="source\games\gt4o\main.c">
       <Filter>Game gt4o</Filter>
     </ClCompile>
+    <ClCompile Include="source\games\gt4o\reserve\MemDiag.c">
+      <Filter>Game gt4o\reserve</Filter>
+    </ClCompile>
+    <ClCompile Include="source\games\gt4o\reserve\Reserve.c">
+      <Filter>Game gt4o\reserve</Filter>
+    </ClCompile>
     <ClCompile Include="source\games\gt4o\util\Path.c">
       <Filter>Game gt4o\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\games\tt\MakerNames.c">
+      <Filter>Game tt</Filter>
     </ClCompile>
     <ClCompile Include="source\games\tt\main.c">
       <Filter>Game tt</Filter>
@@ -144,6 +180,9 @@
       <Filter>Core\hooks</Filter>
     </ClInclude>
     <ClInclude Include="source\core\hooks\HostFs.h">
+      <Filter>Core\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\hooks\MakerList.h">
       <Filter>Core\hooks</Filter>
     </ClInclude>
     <ClInclude Include="source\core\pdistd\FileDevice.h">
@@ -182,6 +221,9 @@
     <ClInclude Include="source\games\gt4o\CameraSys.h">
       <Filter>Game gt4o</Filter>
     </ClInclude>
+    <ClInclude Include="source\games\gt4o\DevRam.h">
+      <Filter>Game gt4o</Filter>
+    </ClInclude>
     <ClInclude Include="source\games\gt4o\GameConfig.h">
       <Filter>Game gt4o</Filter>
     </ClInclude>
@@ -218,10 +260,25 @@
     <ClInclude Include="source\games\gt4o\GameStructs\PolyphonyGL.h">
       <Filter>Game gt4o\GameStructs</Filter>
     </ClInclude>
+    <ClInclude Include="source\games\gt4o\HeapWatch.h">
+      <Filter>Game gt4o</Filter>
+    </ClInclude>
+    <ClInclude Include="source\games\gt4o\LicenseReplays.h">
+      <Filter>Game gt4o</Filter>
+    </ClInclude>
     <ClInclude Include="source\games\gt4o\MCarGarage.h">
       <Filter>Game gt4o</Filter>
     </ClInclude>
     <ClInclude Include="source\games\gt4o\MStorage.h">
+      <Filter>Game gt4o</Filter>
+    </ClInclude>
+    <ClInclude Include="source\games\gt4o\RaceAspect.h">
+      <Filter>Game gt4o</Filter>
+    </ClInclude>
+    <ClInclude Include="source\games\gt4o\RaceGpb.h">
+      <Filter>Game gt4o</Filter>
+    </ClInclude>
+    <ClInclude Include="source\games\gt4o\RaceHud.h">
       <Filter>Game gt4o</Filter>
     </ClInclude>
     <ClInclude Include="source\games\gt4o\Targets\SCUS-97436.h">
@@ -229,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="source\games\gt4o\Targets\SCUS-97436.pgl.h">
       <Filter>Game gt4o\Targets</Filter>
+    </ClInclude>
+    <ClInclude Include="source\games\gt4o\reserve\MemDiag.h">
+      <Filter>Game gt4o\reserve</Filter>
     </ClInclude>
     <ClInclude Include="source\games\gt4o\util\Path.h">
       <Filter>Game gt4o\util</Filter>
@@ -275,6 +335,24 @@
       <Filter>Tools</Filter>
     </None>
     <None Include="tools\gen_vsproject.py">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="tools\inject_cave2.py">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="tools\irxcalls.py">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="tools\irxdis.py">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="tools\irxinfo.py">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="tools\irxsections.py">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="tools\startup_slot.py">
       <Filter>Tools</Filter>
     </None>
     <None Include="tools\tt\consolidate.py">

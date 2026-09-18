@@ -24,6 +24,7 @@
     <ClCompile Include="source\core\game\String.c" />
     <ClCompile Include="source\core\hooks\HOutput.c" />
     <ClCompile Include="source\core\hooks\HostFs.c" />
+    <ClCompile Include="source\core\hooks\MakerList.c" />
     <ClCompile Include="source\core\ps2\Memory.c" />
     <ClCompile Include="source\core\ps2\Sio.c" />
     <ClCompile Include="source\core\util\String.c" />
@@ -31,6 +32,7 @@
     <ClCompile Include="source\games\gt4o\Adhoc\Decl.c" />
     <ClCompile Include="source\games\gt4o\Adhoc\MMyModule.c" />
     <ClCompile Include="source\games\gt4o\CameraSys.c" />
+    <ClCompile Include="source\games\gt4o\DevRam.c" />
     <ClCompile Include="source\games\gt4o\GameFunctions\Adhoc.c" />
     <ClCompile Include="source\games\gt4o\GameFunctions\FontManagerClass.c" />
     <ClCompile Include="source\games\gt4o\GameFunctions\MCarGarage.c" />
@@ -38,10 +40,19 @@
     <ClCompile Include="source\games\gt4o\GameFunctions\Misc.c" />
     <ClCompile Include="source\games\gt4o\GameFunctions\Monitor.c" />
     <ClCompile Include="source\games\gt4o\GameFunctions\PolyphonyGL.c" />
+    <ClCompile Include="source\games\gt4o\HeapWatch.c" />
+    <ClCompile Include="source\games\gt4o\LicenseReplays.c" />
     <ClCompile Include="source\games\gt4o\MCarGarage.c" />
     <ClCompile Include="source\games\gt4o\MStorage.c" />
+    <ClCompile Include="source\games\gt4o\MakerNames.c" />
+    <ClCompile Include="source\games\gt4o\RaceAspect.c" />
+    <ClCompile Include="source\games\gt4o\RaceGpb.c" />
+    <ClCompile Include="source\games\gt4o\RaceHud.c" />
     <ClCompile Include="source\games\gt4o\main.c" />
+    <ClCompile Include="source\games\gt4o\reserve\MemDiag.c" />
+    <ClCompile Include="source\games\gt4o\reserve\Reserve.c" />
     <ClCompile Include="source\games\gt4o\util\Path.c" />
+    <ClCompile Include="source\games\tt\MakerNames.c" />
     <ClCompile Include="source\games\tt\main.c" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +63,7 @@
     <ClInclude Include="source\core\game\String.h" />
     <ClInclude Include="source\core\hooks\HOutput.h" />
     <ClInclude Include="source\core\hooks\HostFs.h" />
+    <ClInclude Include="source\core\hooks\MakerList.h" />
     <ClInclude Include="source\core\pdistd\FileDevice.h" />
     <ClInclude Include="source\core\pdistd\FileError.h" />
     <ClInclude Include="source\core\pdistd\SceEnums.h" />
@@ -64,6 +76,7 @@
     <ClInclude Include="source\games\gt4o\Adhoc\MMyModule.h" />
     <ClInclude Include="source\games\gt4o\CameraEnums.h" />
     <ClInclude Include="source\games\gt4o\CameraSys.h" />
+    <ClInclude Include="source\games\gt4o\DevRam.h" />
     <ClInclude Include="source\games\gt4o\GameConfig.h" />
     <ClInclude Include="source\games\gt4o\GameFunctions\Adhoc.h" />
     <ClInclude Include="source\games\gt4o\GameFunctions\CameraSys.h" />
@@ -76,10 +89,16 @@
     <ClInclude Include="source\games\gt4o\GameStructs\Adhoc.h" />
     <ClInclude Include="source\games\gt4o\GameStructs\FontManagerClass.h" />
     <ClInclude Include="source\games\gt4o\GameStructs\PolyphonyGL.h" />
+    <ClInclude Include="source\games\gt4o\HeapWatch.h" />
+    <ClInclude Include="source\games\gt4o\LicenseReplays.h" />
     <ClInclude Include="source\games\gt4o\MCarGarage.h" />
     <ClInclude Include="source\games\gt4o\MStorage.h" />
+    <ClInclude Include="source\games\gt4o\RaceAspect.h" />
+    <ClInclude Include="source\games\gt4o\RaceGpb.h" />
+    <ClInclude Include="source\games\gt4o\RaceHud.h" />
     <ClInclude Include="source\games\gt4o\Targets\SCUS-97436.h" />
     <ClInclude Include="source\games\gt4o\Targets\SCUS-97436.pgl.h" />
+    <ClInclude Include="source\games\gt4o\reserve\MemDiag.h" />
     <ClInclude Include="source\games\gt4o\util\Path.h" />
     <ClInclude Include="source\games\tt\GameConfig.h" />
     <ClInclude Include="source\games\tt\Targets\SCES-53372.h" />
@@ -97,6 +116,12 @@
     <None Include="tools\check_game.py" />
     <None Include="tools\clamp_bss.py" />
     <None Include="tools\gen_vsproject.py" />
+    <None Include="tools\inject_cave2.py" />
+    <None Include="tools\irxcalls.py" />
+    <None Include="tools\irxdis.py" />
+    <None Include="tools\irxinfo.py" />
+    <None Include="tools\irxsections.py" />
+    <None Include="tools\startup_slot.py" />
     <None Include="tools\tt\consolidate.py" />
     <None Include="tools\tt\find_free_space.py" />
     <None Include="tools\tt\gen_headers.py" />
@@ -150,35 +175,35 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='gt4o-US|x64'">
-    <NMakeBuildCommandLine>build.bat gt4o US</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build.bat clean gt4o US &amp;&amp; build.bat gt4o US</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build.bat clean gt4o US</NMakeCleanCommandLine>
-    <NMakeOutput>..\GT4Hooks-work\out\gt4o\SCUS-97436\plugin.elf</NMakeOutput>
-    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCUS-97436.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>build.bat gt4o US for:pcsx2</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean gt4o US for:pcsx2 &amp;&amp; build.bat gt4o US for:pcsx2</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean gt4o US for:pcsx2</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\gt4o\SCUS-97436\pcsx2\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;PLATFORM_PS2=0;PLATFORM_PCSX2=1;HOSTFS_PRINT=1;TARGET_HEADER="SCUS-97436.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\gt4o\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-US|x64'">
-    <NMakeBuildCommandLine>build.bat tt US</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build.bat clean tt US &amp;&amp; build.bat tt US</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build.bat clean tt US</NMakeCleanCommandLine>
-    <NMakeOutput>..\GT4Hooks-work\out\tt\SCUS-97502\plugin.elf</NMakeOutput>
-    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCUS-97502.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>build.bat tt US for:pcsx2</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean tt US for:pcsx2 &amp;&amp; build.bat tt US for:pcsx2</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean tt US for:pcsx2</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\tt\SCUS-97502\pcsx2\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;PLATFORM_PS2=0;PLATFORM_PCSX2=1;HOSTFS_PRINT=1;TARGET_HEADER="SCUS-97502.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\tt\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-EU|x64'">
-    <NMakeBuildCommandLine>build.bat tt EU</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build.bat clean tt EU &amp;&amp; build.bat tt EU</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build.bat clean tt EU</NMakeCleanCommandLine>
-    <NMakeOutput>..\GT4Hooks-work\out\tt\SCES-53372\plugin.elf</NMakeOutput>
-    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCES-53372.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>build.bat tt EU for:pcsx2</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean tt EU for:pcsx2 &amp;&amp; build.bat tt EU for:pcsx2</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean tt EU for:pcsx2</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\tt\SCES-53372\pcsx2\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;PLATFORM_PS2=0;PLATFORM_PCSX2=1;HOSTFS_PRINT=1;TARGET_HEADER="SCES-53372.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\tt\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tt-JP|x64'">
-    <NMakeBuildCommandLine>build.bat tt JP</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build.bat clean tt JP &amp;&amp; build.bat tt JP</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build.bat clean tt JP</NMakeCleanCommandLine>
-    <NMakeOutput>..\GT4Hooks-work\out\tt\SCPS-15105\plugin.elf</NMakeOutput>
-    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER="SCPS-15105.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>build.bat tt JP for:pcsx2</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build.bat clean tt JP for:pcsx2 &amp;&amp; build.bat tt JP for:pcsx2</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build.bat clean tt JP for:pcsx2</NMakeCleanCommandLine>
+    <NMakeOutput>..\GT4Hooks-work\out\tt\SCPS-15105\pcsx2\plugin.elf</NMakeOutput>
+    <NMakePreprocessorDefinitions>_EE;PLATFORM_PS2=0;PLATFORM_PCSX2=1;HOSTFS_PRINT=1;TARGET_HEADER="SCPS-15105.h";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\games\tt\Targets;$(ProjectDir)..\ps2sdk-main\ps2sdk\ee\include;$(ProjectDir)..\ps2sdk-main\ps2sdk\common\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

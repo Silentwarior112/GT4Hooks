@@ -5,14 +5,15 @@
 // InitializeExtraData(); 		// Creates mc0:/<game save folder>/ExtraData.txt and populates each variable with the default values
 // LoadExtraData(); 			// Loads mc0:/<game save folder>/ExtraData.txt
 // SaveExtraData(); 			// Updates all extra variables for mc0:/<game save folder>/ExtraData.txt
+// ExtraDataUsedBytes(); 		// How many of the file's 6,528 bytes the card holds now, or -1
 
 // main::menu::MStorage::getStorage(1).loadVars(path)	// Loads all extra data into memory. 0 = HDD, 1 = mc0, 1 = mc1
 // main::menu::MStorage::getStorage(1).saveVars(path)	// Saves all extra data from memory to the file 0 = HDD, 1 = mc0, 1 = mc1
-// main::menu::MStorage::getExtraData(name) 			// Fetches an extraData variable from memory
-// main::menu::MStorage::setExtraData(name, value) 		// Sets an extraData variable in memory. Strings ≤ 255 bytes, no control characters. Anything else — array, map, nil — is refused
+// main::menu::MStorage::getExtraData(name, fallback) 	// Fetches an extraData variable from memory, or fallback if there is none
+// main::menu::MStorage::setExtraData(name, value) 		// Sets an extraData variable in memory. Strings ≤ 1023 bytes, no control characters. Anything else — array, map, nil — is refused
 
-// main::menu::MStorage::getStorage(1).setVar(path, "variable", value) 	// Fetches an extraData variable from the file instead of memory. Not really needed
-// main::menu::MStorage::getStorage(1).getVar(path, "variable") 		// Sets an extraData variable to the file instead of memory. Not really needed
+// main::menu::MStorage::getStorage(1).setVar(path, "variable", value) 	// Sets an extraData variable in the file instead of memory. Not really needed
+// main::menu::MStorage::getStorage(1).getVar(path, "variable") 		// Fetches an extraData variable from the file instead of memory. Not really needed
 // main::menu::MStorage::getStorage(1).delVar(path, name) 				// "Deletes" an extraData variable. idk if this needs to exist. Returns 1 if removed, 0 otherwise
 
 // main::menu::MStorage::getStorage(1).read(path) 						// Fetches the whole file as a string
@@ -22,13 +23,34 @@
 
 static extraDataPath = "/BASCUS-97436GAMEDATA/ExtraData.txt";
 
+// The game's own HUD colours, packed the way hudColors.ad packs them (its hudColorSlots order,
+// the needle's six vertices first). Seeds the hudColors variable, so loading it changes nothing
+// and the string's room is held from the first save: 455 bytes now, up to about 781 once saved
+// colours carry alpha of their own. Also what ResetHudColors() puts back.
+static hudColorStock = "-12582912,-12582912,-3670016,-3670016,-12582912,-12582912,-6750208,-1,-1,-1,-6899485,-6899485,-1,-6899485,-6899485,-1,-1048576,-65536,-6899485,-1048576,0,0,-1,-6899485,-1048576,-1,-1,-543621120,-6899485,-3670016,-1048576,-6899485,-6899485,-3670016,-1048576,-8356985,-874402,-874402,-1,-3618616,-3670016,-1,-1,-1,-1,-1,-3618616,-3618616,-3618616,-5000269,-3618616,-1,-5921369,-1,-1,-1,-1,-1,-12349515,-171261,-26368,-3670016,-335104,-14671840";
+
 //
 // Additional variables: Add more here to support more
 // Name, default value.
 // extraDataList sets the default values when first creating a new save game
-// 1–63 bytes, no control characters, may not start with #
-// Max 64 variables currently. Code Hook must be edited to increase the maximum amount of variables here
+// The max total size of the file cannot exceed 6,528 bytes. (Edit code hook to expand, currently setup to fill up the remainder of a memory cave already, so even more requires moving this hook to a different memory cave)
+// The max bytes a single variable can be is 1,023 bytes. (Edit code hook to expand)
+// No control characters, may not start with #
+// Max 64 variables currently. Code Hook must be edited to increase the maximum amount of variables here, goes hand in hand with the max bytes limit.
+//
+// Budget: the file is a 9-byte header, then one line per variable, costing its name + its value + 4 bytes.
+// An integer uses up to 11 bytes, a float uses up to 18 bytes, a string uses 1 byte per character. (Full width / Kanji-type fonts not tested, I assume these would use 2 bytes per)
+// Plan every variable at its longest value; ExtraDataUsedBytes() measures what the card holds.
 static extraDataList = [
+
+// hudColors: every HUD colour in one string - see hudColors.ad.
+// This is the default HUD element tints.
+// This is initialized at 455 bytes now, up to about 781 bytes max.
+// If you don't care about this feature, you can just delete this array and that will free up the 455 bytes to use for something else in here.
+["hudColors", hudColorStock],
+
+// hudStyle: 0 = the game's own display, 1 = the original textures with the colours above.
+["hudStyle", 0],
 
 ["extraInt0", 0],
 ["extraFloat0", 0.0],
@@ -77,6 +99,22 @@ function LoadExtraData()
     }
 
     return true;
+}
+
+
+// Bytes the file on the card uses, of 6,528, or -1 if it cannot be read. It counts what the
+// last SaveExtraData() wrote, so save first to include changes made with setExtraData.
+function ExtraDataUsedBytes()
+{
+    var storage = main::menu::MStorage::getStorage(1);
+    if (storage == nil)
+        return -1;
+
+    var text = storage.read(extraDataPath);
+    if (text == nil)
+        return -1;
+
+    return text.size;
 }
 
 

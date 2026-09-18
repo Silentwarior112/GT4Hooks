@@ -138,15 +138,17 @@ def main():
         x.append("  </ImportGroup>")
 
     # NMake settings: build.bat does the work; the include path and defines are
-    # only so IntelliSense resolves the same headers the real build does.
+    # only so IntelliSense resolves the same headers the real build does. The
+    # project builds the pcsx2 platform, the one that is tested in the emulator.
+    plat = "pcsx2"
     for cfg, game, region, build in targets:
         x.append("  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='%s|x64'\">" % cfg)
-        x.append("    <NMakeBuildCommandLine>build.bat %s %s</NMakeBuildCommandLine>" % (game, region))
-        x.append("    <NMakeReBuildCommandLine>build.bat clean %s %s &amp;&amp; build.bat %s %s</NMakeReBuildCommandLine>"
-                 % (game, region, game, region))
-        x.append("    <NMakeCleanCommandLine>build.bat clean %s %s</NMakeCleanCommandLine>" % (game, region))
-        x.append("    <NMakeOutput>..\\GT4Hooks-work\\out\\%s\\%s\\plugin.elf</NMakeOutput>" % (game, build))
-        x.append("    <NMakePreprocessorDefinitions>_EE;HOSTFS_PRINT=1;TARGET_HEADER=\"%s.h\";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>" % build)
+        x.append("    <NMakeBuildCommandLine>build.bat %s %s for:%s</NMakeBuildCommandLine>" % (game, region, plat))
+        x.append("    <NMakeReBuildCommandLine>build.bat clean %s %s for:%s &amp;&amp; build.bat %s %s for:%s</NMakeReBuildCommandLine>"
+                 % (game, region, plat, game, region, plat))
+        x.append("    <NMakeCleanCommandLine>build.bat clean %s %s for:%s</NMakeCleanCommandLine>" % (game, region, plat))
+        x.append("    <NMakeOutput>..\\GT4Hooks-work\\out\\%s\\%s\\%s\\plugin.elf</NMakeOutput>" % (game, build, plat))
+        x.append("    <NMakePreprocessorDefinitions>_EE;PLATFORM_PS2=0;PLATFORM_PCSX2=1;HOSTFS_PRINT=1;TARGET_HEADER=\"%s.h\";$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>" % build)
         x.append("    <NMakeIncludeSearchPath>$(ProjectDir)source;$(ProjectDir)source\\games\\%s\\Targets;"
                  "$(ProjectDir)..\\ps2sdk-main\\ps2sdk\\ee\\include;"
                  "$(ProjectDir)..\\ps2sdk-main\\ps2sdk\\common\\include;"

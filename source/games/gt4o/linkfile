@@ -1,0 +1,197 @@
+/*
+  GT4Hooks - Gran Turismo 4 Online's linkfile.
+
+  mk/linkfile plus three more output sections, .cave2, .cave2b and .cave2c,
+  linked over code the game can never run: the Medius billing client and a
+  run of padding (see CAVE2_US in game.mk and the target header). A fourth,
+  .devram, is the dev RAM reserve of pcsx2 builds (DEVRAM_US in game.mk and
+  DevRam.c). Everything else is what mk/linkfile does, at BASE_ADDRESS in the
+  IME cave.
+
+  The objects named in .cave2 go to the second cave, whole. .cave2 comes first
+  in SECTIONS on purpose: the linker hands each input section to the first rule
+  that matches it, so these objects are taken before .text's catch-all rules
+  can claim them. To move another file across, add a line for its object - the
+  name is its source path with / turned into _ (OBJ_OF in the makefile).
+
+  The injector copies only .text, so build.bat writes the other caves into the
+  injected ELF afterwards with tools/inject_cave2.py - in place, over the dead
+  code, after checking those bytes against the base image.
+
+  BASE_ADDRESS, PLUGIN_RESERVE and each cave's ADDRESS and RESERVE come from
+  game.mk through --defsym. The ASSERTs at the end fail the link when any cave
+  overflows, rather than let the plugin spill into code the game runs.
+*/
+
+ENTRY(__start);
+
+PHDRS {
+  text PT_LOAD;
+  cave2 PT_LOAD;
+  cave2b PT_LOAD;
+  cave2c PT_LOAD;
+  devram PT_LOAD;
+}
+
+SECTIONS {
+
+	/* The cave opens and closes with the word "CAV2" (0x32564143). init()
+	   checks both before it calls anything in here, so a loader that did not
+	   load the cave - or loaded only part of it - is reported and survived
+	   rather than jumped into. Keep in step with CAVE2_MAGIC in main.c. */
+	.cave2 CAVE2_ADDRESS : {
+		_cave2_start = . ;
+		LONG(0x32564143)
+		*source_games_gt4o_RaceHud.o(.text .text.* .rodata .rodata.* .data .data.* .bss .bss.* COMMON)
+		*source_games_gt4o_RaceAspect.o(.text .text.* .rodata .rodata.* .data .data.* .bss .bss.* COMMON)
+		_cave2_tail = . ;
+		LONG(0x32564143)
+		. = ALIGN(16);
+		_cave2_end = . ;
+	} :cave2
+
+	/* The third cave, opened and closed with the same word and checked the same
+	   way (main.c). RaceGpb went here when .cave2 ran out of room, and HostFS
+	   - pcsx2 builds only; a ps2 build has no such objects and places nothing
+	   for them - when the pcsx2 IME cave did. Move another object across by
+	   adding its line. */
+	.cave2b CAVE2B_ADDRESS : {
+		_cave2b_start = . ;
+		LONG(0x32564143)
+		*source_games_gt4o_RaceGpb.o(.text .text.* .rodata .rodata.* .data .data.* .bss .bss.* COMMON)
+		*source_core_hooks_HostFs.o(.text .text.* .rodata .rodata.* .data .data.* .bss .bss.* COMMON)
+		*source_core_game_FileDevice.o(.text .text.* .rodata .rodata.* .data .data.* .bss .bss.* COMMON)
+		_cave2b_tail = . ;
+		LONG(0x32564143)
+		. = ALIGN(16);
+		_cave2b_end = . ;
+	} :cave2b
+
+	/* Room for more, empty for now: move an object into it by adding its
+	   line, the way the caves above list theirs - and give it the same CAV2
+	   words and check before anything in it is called. */
+	.cave2c CAVE2C_ADDRESS : {
+		_cave2c_start = . ;
+		. = ALIGN(16);
+		_cave2c_end = . ;
+	} :cave2c
+
+	/* The dev RAM reserve (pcsx2 builds): low RAM that is the plugin's only
+	   once init() has moved the pool up into PCSX2's extra memory. Every object
+	   built from source/games/gt4o/reserve/ goes here, between the two words
+	   reserve/Reserve.c opens and closes it with; init() checks both before it
+	   calls anything in here. A ps2 build has no such objects, so the section
+	   is empty and build.bat adds nothing. It lies past .bss, so crt0 does not
+	   clear it; the ELF loads it like any other segment. */
+	.devram DEVRAM_ADDRESS : {
+		_devram_start = . ;
+		KEEP(*(.devram.head))
+		*source_games_gt4o_reserve_*.o(.text .text.* .rodata .rodata.* .data .data.* .bss .bss.* COMMON)
+		KEEP(*(.devram.tail))
+		. = ALIGN(16);
+		_devram_end = . ;
+	} :devram
+
+	/* The heap watch's code is gathered into one run after the rest of the
+	   code, between _heapwatch_start and _heapwatch_end, so it can tell its
+	   own return addresses on the stack from the hooks' (HeapWatch.c). The
+	   startup code - INVOKER and init(), main.o - gets a run of its own for
+	   the same reason: it runs once, before the game, and the return addresses
+	   its frames leave in the stack outlive it. */
+	.text BASE_ADDRESS : {
+		_ftext = . ;
+		*(EXCLUDE_FILE(*source_games_gt4o_HeapWatch.o *source_games_gt4o_main.o) .text)
+		*(EXCLUDE_FILE(*source_games_gt4o_HeapWatch.o *source_games_gt4o_main.o) .text.*)
+		_heapwatch_start = . ;
+		*source_games_gt4o_HeapWatch.o(.text .text.*)
+		_heapwatch_end = . ;
+		_startup_start = . ;
+		*source_games_gt4o_main.o(.text .text.*)
+		_startup_end = . ;
+		*(.gnu.linkonce.t*)
+		*(.rodata)
+		*(.data)
+		*(.rodata)
+		*(.rodata.*)
+		*.o(.text .rodata)
+		/* Statics without an initializer too. The injector copies only this
+		   section, so in the .bss below they would sit in memory that nothing
+		   loads or clears; here they are zeros in the image. */
+		*(.bss .bss.* COMMON)
+		KEEP(*(.init))
+		KEEP(*(.fini))
+		QUAD(0)
+	} :text
+
+	PROVIDE(_etext = .);
+	PROVIDE(etext = .);
+
+
+	 /DISCARD/ :
+	{
+		 *(.MIPS.abiflags)
+		 *(.reginfo)
+		 *(.gnu.attributes)
+	 }
+
+	/* Static data.  */
+	.data ALIGN(128): {
+		_fdata = . ;
+		*(.data)
+		*(.data.*)
+		*(.gnu.linkonce.d*)
+		SORT(CONSTRUCTORS)
+	}
+
+	.rdata ALIGN(128): { *(.rdata) }
+	.gcc_except_table ALIGN(128): { *(.gcc_except_table) }
+
+	_gp = ALIGN(128) + 0x7ff0;
+	.lit4 ALIGN(128): { *(.lit4) }
+	.lit8 ALIGN(128): { *(.lit8) }
+
+	.sdata ALIGN(128): {
+		*(.sdata)
+		*(.sdata.*)
+		*(.gnu.linkonce.s*)
+	}
+
+	_edata = .;
+	PROVIDE(edata = .);
+
+	/* Uninitialized data.  */
+	.sbss ALIGN(128) : {
+		_fbss = . ;
+		*(.sbss)
+		*(.sbss.*)
+		*(.gnu.linkonce.sb*)
+		*(.scommon)
+	}
+
+	.bss ALIGN(128) : {
+		*(.bss)
+		*(.bss.*)
+		*(.gnu.linkonce.b*)
+		*(COMMON)
+	}
+	_end_bss = .;
+
+	_end = . ;
+	PROVIDE(end = .);
+
+	/* Symbols needed by crt0.s.  */
+	PROVIDE(_heap_size = -1);
+	PROVIDE(_stack = -1);
+	PROVIDE(_stack_size = 128 * 1024);
+
+	ASSERT(_end <= BASE_ADDRESS + PLUGIN_RESERVE,
+	       "GT4Hooks: the plugin overflows the IME cave (PLUGIN_RESERVE) - move an object to .cave2 in source/games/gt4o/linkfile")
+	ASSERT(_cave2_end <= CAVE2_ADDRESS + CAVE2_RESERVE,
+	       "GT4Hooks: .cave2 overflows its reserve (CAVE2_RESERVE in game.mk)")
+	ASSERT(_cave2b_end <= CAVE2B_ADDRESS + CAVE2B_RESERVE,
+	       "GT4Hooks: .cave2b overflows its reserve (CAVE2B_RESERVE in game.mk)")
+	ASSERT(_cave2c_end <= CAVE2C_ADDRESS + CAVE2C_RESERVE,
+	       "GT4Hooks: .cave2c overflows its reserve (CAVE2C_RESERVE in game.mk)")
+	ASSERT(_devram_end <= DEVRAM_ADDRESS + DEVRAM_RESERVE,
+	       "GT4Hooks: .devram overflows the dev RAM reserve (DEVRAM_RESERVE in game.mk)")
+}

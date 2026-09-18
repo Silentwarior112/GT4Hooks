@@ -29,6 +29,19 @@ BASE_JP  := 0x798380
 # so it takes this from the game's generic pool - see source/tt/main.c.
 PLUGIN_RESERVE := 0x20000
 
+# The injector hooks startup at crt0's `ei` (0x1001F8 in every build), which
+# makes the next word the hook's delay slot - and that word is crt0's call into
+# the game's early setup, which goes on to POOL_SETUP_FUNC. A jump in a delay
+# slot is skipped by PCSX2 but taken by a PS2, where it kept init() from ever
+# running. The build makes the slot a nop (tools/startup_slot.py) and INVOKER
+# makes the call instead, after init() - see main.c.
+STARTUP_SLOT_US := 0x1001FC
+STARTUP_CALL_US := 0x45D598
+STARTUP_SLOT_EU := 0x1001FC
+STARTUP_CALL_EU := 0x4311B8
+STARTUP_SLOT_JP := 0x1001FC
+STARTUP_CALL_JP := 0x4574F0
+
 # ---- knobs -----------------------------------------------------------------
 HOSTFS_PRINT       := 1
 PRINT_HOSTFS_READS := 1
@@ -44,14 +57,20 @@ HOST_DIR           := VOL_extract
 GAME_DEFS := -DHOSTFS_DIR='"$(HOST_DIR)"'
 
 # ---- sources ---------------------------------------------------------------
-# ORDER IS SIGNIFICANT - see the note in source/gt4/game.mk.
+# ORDER IS SIGNIFICANT - see the note in source/games/gt4o/game.mk, which also
+# explains the split: GAME_SRCS go into every build, GAME_SRCS_pcsx2 only into
+# for:pcsx2 builds, because HostFS needs PCSX2's host: device.
 GAME_SRCS := \
 	source/games/tt/main.c \
 	source/core/ps2/Memory.c \
-	source/core/hooks/HostFs.c \
 	source/core/hooks/HOutput.c \
 	source/core/game/IO.c \
-	source/core/game/FileDevice.c \
 	source/core/game/String.c \
 	source/core/util/String.c \
-	source/core/ps2/Sio.c
+	source/core/ps2/Sio.c \
+	source/core/hooks/MakerList.c \
+	source/games/tt/MakerNames.c
+
+GAME_SRCS_pcsx2 := \
+	source/core/hooks/HostFs.c \
+	source/core/game/FileDevice.c

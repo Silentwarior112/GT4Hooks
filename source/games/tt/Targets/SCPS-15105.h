@@ -129,3 +129,31 @@
 #define POOL_SETUP_FUNC              0x4BB160
 /* first `ei`, where the injector patches in jal INVOKER (informational) */
 #define INVOKER_HOOK_SITE            0x1001F8
+
+/* --- the manufacturer tables.
+
+       Two arrays of { unsigned int id; const char* name; }, holding 92 and 109
+       records. They are BYTE IDENTICAL in all four retail executables - only
+       their addresses differ - so source/core/hooks/MakerList.c serves every
+       build from these constants alone.
+
+       The eight instruction addresses below are every place in the image that
+       materialises a table address or bounds one. That completeness was
+       measured, not assumed: a sweep of both loadable segments at every 4-byte
+       alignment found zero data pointers into either table, and the image has
+       no $gp-relative addressing that could hide a reference.
+
+       The Ctor pairs load table A and table B for registration; the Getter pair
+       loads table B for the adhoc tuner list. CountA bounds an ID (the highest
+       id plus one) while CountB bounds an INDEX (a record count) - they are not
+       the same kind of number. See MakerList.c. */
+#define ADDR_MakerTableA        0x5EDFF8
+#define ADDR_MakerTableB        0x5EE398
+#define ADDR_MakerCtorA_Lui     0x40AF4C
+#define ADDR_MakerCtorA_Addiu   0x40AF58
+#define ADDR_MakerCtorB_Lui     0x40AF60
+#define ADDR_MakerCtorB_Addiu   0x40AF6C
+#define ADDR_MakerGetter_Lui    0x40AEC4
+#define ADDR_MakerGetter_Addiu  0x40AED0
+#define ADDR_MakerCountB        0x40AEC0
+#define ADDR_MakerCountA        0x190ECC

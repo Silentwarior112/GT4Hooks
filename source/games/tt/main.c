@@ -6,8 +6,15 @@
 #include "core/Target.h"
 #include "core/game/IO.h"
 #include "core/Log.h"
+#if PLATFORM_PCSX2
 #include "core/hooks/HostFs.h"
+#endif
 #include "core/hooks/HOutput.h"
+#include "core/hooks/MakerList.h"
+
+#ifndef STARTUP_CALL
+#error "STARTUP_SLOT_<region> / STARTUP_CALL_<region> are missing from game.mk - INVOKER makes crt0's call with them"
+#endif
 
 /*
     Tourist Trophy plugin entry point.
@@ -77,20 +84,35 @@ void init(void)
     PATCH_INT(MEMORY_SIZE_OFFSET, (128 * 0x100000) - 0x8000);
 #endif
 
-    HostFs_InstallHooks();
+    /* Every build, console and PCSX2 alike. */
     HOutput_InstallHooks();
+    MakerList_InstallHooks();
 
+    /* pcsx2 builds only: HostFS reads through PCSX2's host: device, which a
+       console does not have. */
+#if PLATFORM_PCSX2
+    HostFs_InstallHooks();
 #if HOSTFS_PRINT
     LOG("TTHooks: HostFS installed (" BUILD_NAME ", " REGION_NAME ")\n");
 #endif
+#endif
 }
 
-void __attribute__((optimize("O3"))) INVOKER(void)
+/*
+    The plugin's entry. The injector turns crt0's `ei` into a jal to here, so
+    the `ei` is done here first. The word after it in crt0 is its call into the
+    game's early setup (STARTUP_CALL in game.mk), which was left in the hook's
+    delay slot - a jump in a delay slot, which PCSX2 skips but a PS2 takes, so
+    on a console init() never ran. build.bat makes that slot a nop
+    (tools/startup_slot.py), and the call is made here instead, after init():
+    the setup goes on to POOL_SETUP_FUNC, and init() has to raise the pool base
+    before that runs.
+*/
+void INVOKER(void)
 {
-    asm("ei\n");
-    asm("addiu $ra, -4\n");
-
+    asm volatile("ei");
     init();
+    ((void (*)(void))STARTUP_CALL)();
 }
 
 int main(void)

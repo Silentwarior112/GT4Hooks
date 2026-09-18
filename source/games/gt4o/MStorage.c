@@ -579,16 +579,28 @@ void m_echoVar(HObject* return_value, HObject* this_, int argc, hObject** argv)
 #define KV_MAGIC      "#gt4kv 1\n"
 #define KV_MAGIC_LEN  9
 #define KV_NAME_MAX   63
-#define KV_VALUE_MAX  255
+
+/* Long enough for a whole table packed into one string - the HUD's colours,
+   all 64 as comma-separated ints, come to about 770 characters at most - and
+   about a sixth of the file. It sizes five stack buffers, the largest just over
+   1 KB, which the 0x8000-byte menu thread stack takes comfortably; they stay
+   on the stack because the IME cave this file lives in has no room for them
+   as statics in a pcsx2 build. */
+#define KV_VALUE_MAX  1023
 #define KV_LINE_MAX   (KV_NAME_MAX + 1 + 1 + 1 + KV_VALUE_MAX + 1)
-#define KV_FILE_MAX   4096
+/* The whole store, and the one thing this sizes is g_kvFile below, which sits
+   in the IME cave with everything else in this file. 6528 is as far as it goes
+   there: a pcsx2 build carries the same file and has the least room, and it
+   had 2456 bytes spare at 4096. Both builds must agree, since a file one saves
+   the other has to load. Past this, the buffer has to move to .cave2b. */
+#define KV_FILE_MAX   6528
 
 /*
     The whole file. Static rather than a local because a method callback runs on
     a menu thread with a 0x8000-byte stack (PDISTD::Thread::create 0x525288) and
     nothing bounds how deep the adhoc interpreter already is when it calls us -
-    it recurses per expression node through vtable slots. Four kilobytes there
-    is not a gamble worth taking.
+    it recurses per expression node through vtable slots. Six and a half
+    kilobytes there is not a gamble worth taking.
 
     Static rather than allocated because a static cannot fail. The game's own
     read callback calls the pool allocator at 0x3B6BF8 and does not check the
@@ -1500,7 +1512,7 @@ void m_delVar(HObject* return_value, HObject* this_, int argc, hObject** argv)
    it lands or it does not, rather than tearing halfway down the list.
 */
 
-/* A sanity bound, not a capacity bound - the real limit is the 4 KB file, which
+/* A sanity bound, not a capacity bound - the real limit is the KV_FILE_MAX file, which
    KV_Splice enforces per row. This exists so that a corrupt or hostile array
    cannot make the menu thread walk for minutes. */
 #define KV_MAX_VARS 64

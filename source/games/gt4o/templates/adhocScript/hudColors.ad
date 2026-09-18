@@ -1,0 +1,182 @@
+//-----------------------
+// HUD Colour Helper Script for GT4Hooks
+//
+// Include AFTER extraData.ad, in the same module: hudColorStock lives there, beside the
+// ExtraData default it seeds.
+//-----------------------
+
+// ApplyHudStyle();			// The saved style onto the HUD: at boot, after LoadExtraData(), and when a page cancels
+// ApplyHudStyleNumber(n);	// Style n onto the HUD - its texture file, and the game's colours for 0, the saved ones otherwise
+// SaveHudColors();		// Packs every HUD colour into the ExtraData string hudColorVar. Call SaveExtraData() after to put it on the card
+// LoadHudColors();		// Applies that string, if there is one
+// ResetHudColors();		// Puts the game's own colours back, in memory and in the ExtraData string. Call SaveExtraData() after
+// PackHudColors();		// The packed string for what the HUD holds now, e.g. to put back after a cancelled edit
+// ApplyHudColorString(s);	// Applies a packed string
+//
+// WHAT TOUCHES THE SAVED COLOURS: only SaveHudColors() (the editor's OK) and ResetHudColors()
+// (the Reset button) write hudColorVar. Applying a style only changes what the HUD holds:
+// style 0 puts the game's own colours there and leaves the saved ones in ExtraData, so a
+// later style has them back.
+
+// main::menu::MOption::RaceHudSetColor(slot, argb)				// Sets one slot, from a menu, for every race after. 1 or 0
+// main::menu::MOption::RaceHudSetColor("needle", vertex, argb)	// One of the needle's six vertices, 0..5
+// main::menu::MOption::RaceHudGetColor(slot)					// The slot's colour now, 0xAARRGGBB, or nil if the build has no such slot
+// main::menu::MOption::RaceHudGetColor("needle", vertex)
+
+// main::menu::MOption::RaceHudSetGpb(name)						// The HUD's texture file: race_display/gt4/US/<name>.gpb, for every race after. 1 or 0
+// main::menu::MOption::RaceHudGetGpb()							// The name in force; "display" is the game's own
+
+// The ExtraData variables. extraData.ad's extraDataList seeds both - keep the names the same.
+static hudColorVar = "hudColors";
+static hudStyleVar = "hudStyle";		// 0 = the game's own display, 1 = the original textures with these colours
+
+//
+// The texture file of each style, by the style number - the Style pulldown's order in
+// RaceDisplayRoot (option.mproject). A file is race_display/gt4/US/<name>.gpb on the disc.
+// To add a style: one more pulldown entry there, one more name here. A style past the end
+// of this list uses the game's own file.
+//
+static hudStyleGpb = [
+    "display",		// 0 Original: the game's own textures and colours
+    "display"		// 1 Org_Color: the game's own textures, the colours above
+];
+
+//
+// The order colours are packed in.
+// APPEND ONLY: a saved string is read back by position, so inserting, removing or
+// reordering a name here makes every save made before it land in the wrong slots.
+// A save shorter than this list leaves the slots past its end as the game draws them.
+// The first six entries are the needle's six vertices.
+//
+static hudColorSlots = [
+
+"needle", "needle", "needle", "needle", "needle", "needle",
+"redline", "meter.face", "meter.base",
+"gmeter.base", "gmeter.point",
+"speed.digits", "speed.unit", "odometer",
+"gear.digits", "gear.base", "gear.suggested", "gear.lamp",
+"throttle.fill", "brake.fill", "throttle.trough", "brake.trough", "pedals",
+"fuel.fill", "fuel2.fill", "fuel.bg",
+"revbar.fill", "revbar.redline",
+"lamp.asm", "lamp.warning",
+"cockpit.brake", "cockpit.throttle", "cockpit.fuel", "cockpit.fuel.low", "cockpit.nos",
+"tyres.base",
+"refuel.bar", "refuel.text", "refuel.frame",
+"clock.digits", "clock.alert", "clock.label",
+"label.position", "label.lap", "label.time1", "label.time2",
+"rank", "lap", "laptimes", "laptimes.lap", "music",
+"wrongway", "tooltip.text",
+"minimap", "minimap.rival", "minimap.player",
+"prius.base", "prius.monitor", "prius.mileage", "prius.consumption",
+"prius.vsc", "prius.brake", "prius.battery", "prius.battery.off"
+
+];
+
+//
+// functions
+//
+
+// Every position is written, so the string always lines up with the list. A colour
+// is the int RaceHudGetColor gives - an opaque one is at most 9 characters - and x
+// marks a slot this build does not have, which ApplyHudColorString leaves alone. All 64
+// come to about 640 characters; ExtraData strings may be 1023.
+function PackHudColors()
+{
+    var packed = "";
+
+    for (var i = 0; i < hudColorSlots.size; i++)
+    {
+        var c;
+        if (i < 6)
+            c = main::menu::MOption::RaceHudGetColor("needle", i);
+        else
+            c = main::menu::MOption::RaceHudGetColor(hudColorSlots[i]);
+
+        if (i > 0)
+            packed = packed + ",";
+
+        if (c == nil)
+            packed = packed + "x";
+        else
+            packed = packed + c;
+    }
+
+    return packed;
+}
+
+
+function SaveHudColors()
+{
+    return main::menu::MStorage::setExtraData(hudColorVar, PackHudColors());
+}
+
+
+// One split does the parsing: no brackets to strip and no character loop, just one
+// piece per slot. x, or a piece past the end of the list, is skipped.
+function ApplyHudColorString(packed)
+{
+    if (packed == nil)
+        return false;
+    if (packed == "")
+        return false;
+
+    var pieces = packed.split(",");
+
+    for (var i = 0; i < pieces.size; i++)
+    {
+        if (i < hudColorSlots.size)
+        {
+            var p = pieces[i];
+            if (p != "x")
+            {
+                if (i < 6)
+                    main::menu::MOption::RaceHudSetColor("needle", i, p.toInt());
+                else
+                    main::menu::MOption::RaceHudSetColor(hudColorSlots[i], p.toInt());
+            }
+        }
+    }
+
+    return true;
+}
+
+
+function LoadHudColors()
+{
+    return ApplyHudColorString(main::menu::MStorage::getExtraData(hudColorVar, ""));
+}
+
+
+function ResetHudColors()
+{
+    ApplyHudColorString(hudColorStock);
+    return main::menu::MStorage::setExtraData(hudColorVar, hudColorStock);
+}
+
+
+// Style n onto the HUD, ExtraData untouched: its texture file (hudStyleGpb), then its
+// colours - the game's own for style 0, whatever is saved for any other. The saved
+// colours stay in ExtraData through a spell of style 0, so putting another style back
+// fetches them again.
+function ApplyHudStyleNumber(style)
+{
+    if (style == nil)
+        style = 0;
+
+    var gpb = "display";
+    if (style >= 0 && style < hudStyleGpb.size)
+        gpb = hudStyleGpb[style];
+    main::menu::MOption::RaceHudSetGpb(gpb);
+
+    if (style == 0)
+        return ApplyHudColorString(hudColorStock);
+
+    return LoadHudColors();
+}
+
+
+// The saved style, as ExtraData holds it, onto the HUD.
+function ApplyHudStyle()
+{
+    return ApplyHudStyleNumber(main::menu::MStorage::getExtraData(hudStyleVar, 0));
+}

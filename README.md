@@ -19,10 +19,26 @@ organized around that: one shared engine layer, and a thin layer per game.
 * **`mCarGarage::getPerformanceIndex`** — a new adhoc method returning a car's
   performance index. Also a worked example of extending a built-in adhoc module.
   Run with ```var pIndex = main::menu::MCarGarage::getPerformanceIndex(current_car);```
-* **`Custom MStorage data handler`** - Added support for extra data variables to be
+* **Custom MStorage data handler** - Added support for extra data variables to be
   loaded into memory that persist across all game transitions, manipulated with adhoc,
   then saved to the memory card as an external file that holds all the variables.
   Integers, floats, and strings are supported.
+* **128mb dev ram support** - Building `for:pcsx2` automatically unlocks 128mb, though nothing uses it until you do.
+  Course archive size limits are doubled, nothing else yet. (Untested)
+  Reserves 8MB in dev memory specifically to make room for your own additional code hooks. Nothing makes use of that reserved 8MB unless you add something in gt4o/reserve.
+  Has a heap watcher that will alert you if you go over stock memory limits with console logs and a yellow clock during loading screens.
+  (Likely not 100% accurate but still useful)
+* **Expanded maker list** - 30 new manufacturers to assign to cars: This allows new cars to load appropriate data associated with them, like their manufacturer logo.
+  See `MakerNames.c`, you can add to this list for more manufacturers.
+* **Separate License demo replay directory for PCSX2** - `for:pcsx2` builds read them from replay/license_pcsx2/ instead. This helps prevent confusion over the cause of a crash when loading license tests, and allows one game directory to contain both target platforms for replay files.
+(PCSX2/PS2 replays aren't cross compatible because of EE emulation inaccuracies)
+* **Custom Aspect Ratios** - Adds 16:10 and 21:9 support to the race HUD. (Can add more in RaceAspect.c)
+(FOV isn't wired though, just use game's existing `aspect` setting)
+* **HUD max width** - `main::menu::MOption::RaceAspectSetMaxWidth(w)` and ...`::RaceAspectGetMaxWidth()`
+allow adjusting the position of the HUD's side-anchored elements.
+* **HUD .gpb file customization** - Switch race display textures with `main::menu::MOption::RaceHudSetGpb("display.gpb")` and ...`RaceHudGetGpb()`
+* **HUD Colors customization** - `ResetHudColors()`, `main::menu::MOption::RaceHudSetColor(row[], vertices[], argb)` or `main::menu::MOption::RaceHudSetColor(row[], argb)`,
+and `main::menu::MOption::RaceHudGetColor(row[], row[][])` or `main::menu::MOption::RaceHudGetColor(row[])`
 ```
 Place these function calls at the correct spots in ..share/memorycard.ad,
 and #include extraData.ad at the top: (See the templates provided at source/games/gt4o/templates/adhocScript/)
@@ -50,6 +66,8 @@ main::menu::MStorage::getStorage(1).echoVar(value)					// Diagnostic, sends the 
 * **HostFS** — loose file loading.
 * **`HOutput`** — the engine's own debug output class, stubbed in release
   builds, is restored so its messages print.
+* **Expanded maker list** - New manufacturers to assign to bikes: This allows new bikes to load appropriate data associated with them, like their manufacturer logo.
+  See `MakerNames.c`, you can populate this list for more manufacturers. None added.
 
 ## Progress
 

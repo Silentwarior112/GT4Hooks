@@ -18,8 +18,14 @@
             ],
             "defines": [
                 "_EE",
+                "PLATFORM_PS2=0",
+                "PLATFORM_PCSX2=1",
                 "HOSTFS_PRINT=1",
                 "PRINT_HOSTFS_READS=0",
+                "CAVE2_ADDRESS=0x48D780",
+                "CAVE2_RESERVE=0x38E0",
+                "DEVRAM_ADDRESS=0x8D1000",
+                "DEVRAM_RESERVE=0x800000",
                 "TARGET_HEADER=\"SCUS-97436.h\""
             ],
             "compilerPath": "${workspaceFolder}/../ps2sdk-main/ee/bin/mips64r5900el-ps2-elf-gcc.exe",
@@ -36,6 +42,8 @@
             ],
             "defines": [
                 "_EE",
+                "PLATFORM_PS2=0",
+                "PLATFORM_PCSX2=1",
                 "HOSTFS_PRINT=1",
                 "PRINT_HOSTFS_READS=1",
                 "HOSTFS_DIR=\"VOL_extract\"",
